@@ -12,7 +12,7 @@
       "version": "0.1.0",
       "source": {
         "source": "npm",
-        "package": "@fazer-ai/n8n-agent-kit",
+        "package": "@fazer-ai-pro/n8n-agent-kit",
         "version": "0.1.0",
         "registry": "https://npm.fazer.ai/"
       },

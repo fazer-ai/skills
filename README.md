@@ -28,19 +28,18 @@ revoked automatically if the subscription lapses.
 
 ### 2. Configure npm auth
 
-Add to `~/.npmrc`, replacing `<auth>` with
-`base64(<your-user>:<your-secret>)`:
+After subscribing, the hub shows you an opaque token. Run the setup CLI
+(works on Linux, macOS, Windows):
 
-```ini
-@fazer-ai:registry=https://npm.fazer.ai/
-//npm.fazer.ai/:_auth=<auth>
+```sh
+bunx @fazer-ai/setup <token>
+# or npx / pnpm dlx / yarn dlx @fazer-ai/setup <token>
 ```
 
-Generate the auth blob with:
-
-```bash
-echo -n 'your-user:your-secret' | base64 -w0
-```
+This writes two lines to `~/.npmrc` that map `@fazer-ai-pro/*` to
+`https://npm.fazer.ai/`. Unrelated entries are preserved; re-running
+rotates the credential. The public `@fazer-ai/*` scope on
+`registry.npmjs.org` is untouched.
 
 ### 3. Add this marketplace
 
@@ -88,15 +87,15 @@ Or in `~/.claude/settings.json`:
 }
 ```
 
-If `bun` or `npm` cannot resolve `@fazer-ai/<plugin>`, double-check that
-`~/.npmrc` has the correct auth blob and that your subscription is
-active.
+If `bun` or `npm` cannot resolve `@fazer-ai-pro/<plugin>`, re-run
+`bunx @fazer-ai/setup <token>` to refresh the credential and confirm
+that your subscription is still active.
 
 ## Publishing a new plugin (internal)
 
 Each plugin lives in its own repository and is published to the private
-registry as `@fazer-ai/<plugin-name>`. Adding it to this marketplace is
-a two-step process:
+registry as `@fazer-ai-pro/<plugin-name>`. Adding it to this marketplace
+is a two-step process:
 
 1. Publish the plugin to `npm.fazer.ai` (see the plugin repo's release
    workflow).
