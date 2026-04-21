@@ -9,11 +9,11 @@
     {
       "name": "n8n-agent-kit",
       "description": "Provision an n8n + Chatwoot + Coolify virtual assistant stack end-to-end on a VPS.",
-      "version": "0.2.1",
+      "version": "0.2.2",
       "source": {
         "source": "npm",
         "package": "@fazer-ai-pro/n8n-agent-kit",
-        "version": "0.2.1",
+        "version": "0.2.2",
         "registry": "https://npm.fazer.ai/"
       },
       "category": "devops",
