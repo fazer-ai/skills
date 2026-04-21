@@ -79,6 +79,13 @@ If a plugin fails to install:
 - Confirm your subscription is active at [app.fazer.ai](https://app.fazer.ai).
 - Re-run `bunx @fazer-ai/setup <token>` with a fresh token from the hub.
 
+## Adding a new plugin
+
+See [`docs/plugin-publish-workflow.md`](docs/plugin-publish-workflow.md)
+for the plugin-repo checklist, the `descriptions` i18n convention, and
+the GitHub Actions template that opens an auto-bump PR against this
+repo on each release.
+
 ## License
 
 This repository contains only the marketplace metadata and documentation

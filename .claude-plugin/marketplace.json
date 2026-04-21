@@ -1,6 +1,10 @@
 {
   "name": "fazer-ai",
   "description": "Claude Code plugins by fazer.ai. Subscription-gated via the fazer.ai private npm registry.",
+  "descriptions": {
+    "en": "Claude Code plugins by fazer.ai. Subscription-gated via the fazer.ai private npm registry.",
+    "pt-BR": "Plugins do Claude Code da fazer.ai. Acesso liberado por assinatura do registro npm privado da fazer.ai."
+  },
   "owner": {
     "name": "fazer.ai",
     "url": "https://fazer.ai"
@@ -9,6 +13,10 @@
     {
       "name": "n8n-agent-kit",
       "description": "Provision an n8n + Chatwoot + Coolify virtual assistant stack end-to-end on a VPS.",
+      "descriptions": {
+        "en": "Provision an n8n + Chatwoot + Coolify virtual assistant stack end-to-end on a VPS.",
+        "pt-BR": "Provisione uma stack de assistente virtual com n8n + Chatwoot + Coolify ponta-a-ponta em uma VPS."
+      },
       "version": "0.2.2",
       "source": {
         "source": "npm",

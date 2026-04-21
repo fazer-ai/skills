@@ -1,0 +1,119 @@
+name: Publish
+
+on:
+  release:
+    types: [released]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache Bun installation
+        uses: actions/cache@v4
+        with:
+          path: ~/.bun
+          key: ${{ runner.os }}-bun
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Verify versions are consistent
+        run: |
+          pkg_version=$(bun -e 'console.log(require("./package.json").version)')
+          plugin_version=$(bun -e 'console.log(require("./.claude-plugin/plugin.json").version)')
+          marketplace_version=$(bun -e 'console.log(require("./.claude-plugin/marketplace.json").plugins[0].version)')
+          fail=0
+
+          if [[ "$GITHUB_REF" == refs/tags/* ]]; then
+            tag="${GITHUB_REF#refs/tags/v}"
+            if [ "$pkg_version" != "$tag" ]; then
+              echo "::error::package.json version ($pkg_version) does not match tag ($tag)"
+              fail=1
+            fi
+          fi
+
+          if [ "$plugin_version" != "$pkg_version" ]; then
+            echo "::error::.claude-plugin/plugin.json version ($plugin_version) does not match package.json ($pkg_version)"
+            fail=1
+          fi
+          if [ "$marketplace_version" != "$pkg_version" ]; then
+            echo "::error::.claude-plugin/marketplace.json plugin version ($marketplace_version) does not match package.json ($pkg_version)"
+            fail=1
+          fi
+          exit $fail
+
+      - name: Configure registry auth
+        run: |
+          auth=$(printf '%s:%s' "${{ secrets.NPM_REGISTRY_USER }}" "${{ secrets.NPM_REGISTRY_TOKEN }}" | base64 -w0)
+          {
+            echo "@fazer-ai-pro:registry=https://npm.fazer.ai/"
+            echo "//npm.fazer.ai/:_auth=${auth}"
+          } > .npmrc
+
+      - name: Publish
+        run: npm publish
+
+      # Requires SKILLS_REPO_PAT: a PAT (classic `repo` scope, or fine-grained
+      # with Contents: write + Pull requests: write on fazer-ai/skills).
+      - name: Open PR in fazer-ai/skills
+        env:
+          GH_TOKEN: ${{ secrets.SKILLS_REPO_PAT }}
+        run: |
+          src_pkg="${GITHUB_WORKSPACE}/package.json"
+          version=$(bun -e "console.log(require('${src_pkg}').version)")
+          plugin_name=$(bun -e "console.log(require('${src_pkg}').name.replace(/^@fazer-ai-pro\//, ''))")
+          branch="bump-${plugin_name}-${version}"
+
+          if git ls-remote --exit-code "https://github.com/fazer-ai/skills.git" "refs/heads/${branch}" >/dev/null 2>&1; then
+            echo "Branch ${branch} already exists on fazer-ai/skills, skipping PR"
+            exit 0
+          fi
+
+          tmp=$(mktemp -d)
+          git clone --depth=1 "https://x-access-token:${GH_TOKEN}@github.com/fazer-ai/skills.git" "$tmp"
+          cd "$tmp"
+
+          git config user.name "fazer-ai-bot"
+          git config user.email "ops@fazer.ai"
+
+          PLUGIN_NAME="$plugin_name" \
+          BUMP_VERSION="$version" \
+          SRC_PKG="$src_pkg" \
+          bun -e "
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync(process.env.SRC_PKG, 'utf8'));
+            const path = '.claude-plugin/marketplace.json';
+            const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+            const plugin = data.plugins.find(p => p.name === process.env.PLUGIN_NAME);
+            if (!plugin) {
+              console.error('Plugin ' + process.env.PLUGIN_NAME + ' not found in marketplace.json');
+              process.exit(1);
+            }
+            plugin.version = process.env.BUMP_VERSION;
+            plugin.source.version = process.env.BUMP_VERSION;
+            if (pkg.description) plugin.description = pkg.description;
+            if (pkg.descriptions) plugin.descriptions = pkg.descriptions;
+            fs.writeFileSync(path, JSON.stringify(data, null, 2) + '\n');
+          "
+
+          if git diff --quiet; then
+            echo "marketplace.json already up to date, nothing to commit"
+            exit 0
+          fi
+
+          git checkout -b "$branch"
+          git add .claude-plugin/marketplace.json
+          git commit -m "Bump ${plugin_name} to ${version}"
+          git push origin "$branch"
+
+          gh pr create \
+            --repo fazer-ai/skills \
+            --title "Bump ${plugin_name} to ${version}" \
+            --body "Auto-generated from release v${version} of ${{ github.repository }}." \
+            --base main \
+            --head "$branch"
