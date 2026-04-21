@@ -1,44 +1,45 @@
-# fazer-ai/skills
+# fazer.ai skills for Claude Code
 
-Claude Code marketplace for [fazer.ai](https://fazer.ai) plugins.
+A [Claude Code](https://claude.com/claude-code) marketplace of plugins
+built by [fazer.ai](https://fazer.ai).
 
-This is the discovery point for fazer.ai's Claude Code plugins. Adding
-this marketplace is free. Installing any listed plugin requires an
-active fazer.ai subscription.
+Adding the marketplace is free. Installing any plugin requires an active
+fazer.ai subscription.
 
-## Plugins
+## Available plugins
 
 | Name | Description |
 | ---- | ----------- |
-| [`n8n-agent-kit`](https://github.com/fazer-ai/n8n-agent-kit) | Provision an n8n + Chatwoot + Coolify virtual assistant stack end-to-end on a VPS. |
+| `n8n-agent-kit` | Provision an n8n + Chatwoot + Coolify virtual assistant stack end-to-end on a VPS. |
 
-## Install
+## Getting started
 
 ### 1. Subscribe
 
-Subscribe to the relevant fazer.ai plan on
-[app.fazer.ai](https://app.fazer.ai). The hub then shows you a setup
-token bound to your subscription. The token is revoked automatically
+Sign up for a plan at [app.fazer.ai](https://app.fazer.ai). You'll get a
+setup token tied to your subscription. The token is revoked automatically
 if the subscription lapses.
 
 ### 2. Configure npm auth
 
-Run the setup CLI (works on Linux, macOS, Windows):
+Run the setup CLI once (works on Linux, macOS, and Windows):
 
 ```sh
 bunx @fazer-ai/setup <token>
-# or npx / pnpm dlx / yarn dlx @fazer-ai/setup <token>
 ```
 
-Re-run any time to rotate the credential.
+`npx`, `pnpm dlx`, and `yarn dlx` work too. Re-run any time to rotate the
+credential.
 
 ### 3. Add this marketplace
+
+In Claude Code:
 
 ```text
 /add-marketplace fazer-ai/skills
 ```
 
-Or in `~/.claude/settings.json`:
+Or declare it in `~/.claude/settings.json`:
 
 ```json
 {
@@ -53,19 +54,15 @@ Or in `~/.claude/settings.json`:
 }
 ```
 
-### 4. Install plugins
+### 4. Install a plugin
 
-```text
-/install <plugin-name>@fazer-ai
-```
-
-For example:
+In Claude Code:
 
 ```text
 /install n8n-agent-kit@fazer-ai
 ```
 
-Or in `~/.claude/settings.json`:
+Or declare it in `~/.claude/settings.json`:
 
 ```json
 {
@@ -75,15 +72,17 @@ Or in `~/.claude/settings.json`:
 }
 ```
 
-If a plugin fails to install, re-run `bunx @fazer-ai/setup <token>` and
-confirm that your subscription is still active at
-[app.fazer.ai](https://app.fazer.ai).
+## Troubleshooting
+
+If a plugin fails to install:
+
+- Confirm your subscription is active at [app.fazer.ai](https://app.fazer.ai).
+- Re-run `bunx @fazer-ai/setup <token>` with a fresh token from the hub.
 
 ## License
 
-The contents of this repository (marketplace metadata and
-documentation) are published to support discovery of fazer.ai Claude
-Code plugins. Each listed plugin is distributed under its own license,
-which you can find in its respective repository.
+This repository contains only the marketplace metadata and documentation
+needed to discover fazer.ai Claude Code plugins. Each plugin is
+distributed under its own license.
 
 "fazer.ai" and the associated logos are trademarks of FAZER.AI LTDA.
