@@ -17,11 +17,11 @@
         "en": "Sets up a complete AI WhatsApp assistant for your business from scratch, from buying the server to running workflows, all on your own infrastructure.",
         "pt-BR": "Monta do zero um atendente de IA no WhatsApp da sua empresa, da compra do servidor aos workflows ativos, tudo na sua própria infraestrutura."
       },
-      "version": "1.0.0",
+      "version": "1.0.1",
       "source": {
         "source": "npm",
         "package": "@fazer-ai-pro/fazer-ai-atendimento",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "registry": "https://npm.fazer.ai/"
       },
       "category": "devops",
