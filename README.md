@@ -10,7 +10,7 @@ fazer.ai subscription.
 
 | Name | Description |
 | ---- | ----------- |
-| `n8n-agent-kit` | Provision an n8n + Chatwoot + Coolify virtual assistant stack end-to-end on a VPS. |
+| `fazer-ai-atendimento` | Sets up a complete AI WhatsApp assistant for your business from scratch, all on your own infrastructure. |
 
 ## Getting started
 
@@ -59,7 +59,7 @@ Or declare it in `~/.claude/settings.json`:
 In Claude Code:
 
 ```text
-/install n8n-agent-kit@fazer-ai
+/install fazer-ai-atendimento@fazer-ai
 ```
 
 Or declare it in `~/.claude/settings.json`:
@@ -67,7 +67,7 @@ Or declare it in `~/.claude/settings.json`:
 ```json
 {
   "enabledPlugins": {
-    "n8n-agent-kit@fazer-ai": true
+    "fazer-ai-atendimento@fazer-ai": true
   }
 }
 ```

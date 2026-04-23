@@ -1,7 +1,7 @@
 # Plugin publish workflow
 
 Reference for wiring a new plugin repo into this marketplace. The pattern
-was established for `fazer-ai/n8n-agent-kit` and should be mirrored by
+was established for `fazer-ai/fazer-ai-atendimento` and should be mirrored by
 every future plugin repo so the central `marketplace.json` in this repo
 stays in sync automatically.
 
