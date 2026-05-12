@@ -34,6 +34,18 @@
         "n8n",
         "vps",
         "hostinger"
+      ],
+      "skills": [
+        {
+          "name": "fazer-ai-atendimento",
+          "description": "Provisiona VPS, instala Coolify + Chatwoot fazer.ai + n8n e ativa os workflows do agente, ponta a ponta.",
+          "descriptions": {
+            "en": "Provisions a VPS, installs Coolify + Chatwoot fazer.ai + n8n, and activates the agent's workflows end-to-end.",
+            "pt-BR": "Provisiona VPS, instala Coolify + Chatwoot fazer.ai + n8n e ativa os workflows do agente, ponta a ponta."
+          },
+          "category": "devops",
+          "tags": ["atendimento", "whatsapp", "ia", "agente", "chatwoot", "n8n", "coolify", "vps"]
+        }
       ]
     },
     {
@@ -63,6 +75,80 @@
         "cliente",
         "funil",
         "kanban"
+      ],
+      "skills": [
+        {
+          "name": "desenhar-funil",
+          "description": "Diagnostica o funil atual, propõe redesenho enxuto sob medida e cria o Kanban pronto no Chatwoot fazer.ai. Conversa primeiro, configuração por último.",
+          "descriptions": {
+            "en": "Diagnoses the current funnel, proposes a custom lean redesign, and creates the ready-to-use Kanban in Chatwoot fazer.ai. Conversation first, configuration last.",
+            "pt-BR": "Diagnostica o funil atual, propõe redesenho enxuto sob medida e cria o Kanban pronto no Chatwoot fazer.ai. Conversa primeiro, configuração por último."
+          },
+          "category": "commercial",
+          "tags": ["funil", "kanban", "chatwoot", "diagnostico", "comercial", "vendas"]
+        }
+      ],
+      "coming_soon": [
+        {
+          "name": "gerar-proposta-comercial",
+          "description": "Proposta comercial em MD/PDF: escopo, prazo, preço, premissas e exclusões. Treinada com propostas reais da comunidade.",
+          "descriptions": {
+            "en": "Commercial proposal in MD/PDF: scope, timeline, price, assumptions, exclusions. Trained on real community proposals.",
+            "pt-BR": "Proposta comercial em MD/PDF: escopo, prazo, preço, premissas e exclusões. Treinada com propostas reais da comunidade."
+          },
+          "category": "commercial",
+          "tags": ["proposta", "comercial", "vendas", "cliente", "pdf"]
+        },
+        {
+          "name": "preparar-diagnostico-cliente",
+          "description": "Pesquisa de cliente e 7 perguntas-chave pra reunião de diagnóstico. Recebe nome, site, Instagram e histórico de mensagens.",
+          "descriptions": {
+            "en": "Client research and 7 key questions for the discovery meeting. Takes name, site, Instagram, message history.",
+            "pt-BR": "Pesquisa de cliente e 7 perguntas-chave pra reunião de diagnóstico. Recebe nome, site, Instagram e histórico de mensagens."
+          },
+          "category": "commercial",
+          "tags": ["diagnostico", "discovery", "cliente", "pesquisa", "comercial"]
+        },
+        {
+          "name": "relatorio-chatwoot",
+          "description": "Relatório de atendimento via API do Chatwoot: TMR, CSAT, volume, agente top, etiquetas e conversas abandonadas. Saída em CSV/MD com filtros por inbox, equipe e período.",
+          "descriptions": {
+            "en": "Chatwoot support reporting via API: TMR, CSAT, volume, top agent, labels, abandoned conversations. CSV/MD output with inbox, team, and period filters.",
+            "pt-BR": "Relatório de atendimento via API do Chatwoot: TMR, CSAT, volume, agente top, etiquetas e conversas abandonadas. Saída em CSV/MD com filtros por inbox, equipe e período."
+          },
+          "category": "analytics",
+          "tags": ["chatwoot", "relatorio", "metricas", "atendimento", "csat", "tmr", "csv"]
+        },
+        {
+          "name": "case-portfolio",
+          "description": "Projeto entregue vira estudo de caso: problema, solução e resultado em números. Estrutura pronta pra publicação.",
+          "descriptions": {
+            "en": "Turns a delivered project into a case study: problem, solution, measurable outcome. Publication-ready structure.",
+            "pt-BR": "Projeto entregue vira estudo de caso: problema, solução e resultado em números. Estrutura pronta pra publicação."
+          },
+          "category": "content",
+          "tags": ["case", "portfolio", "conteudo", "marketing", "resultado"]
+        },
+        {
+          "name": "coach-call",
+          "description": "Claude rodando ao vivo durante call comercial. Transcrição local via Handy. Sugere quebra de objeção e perguntas só quando agrega; silêncio o resto do tempo.",
+          "descriptions": {
+            "en": "Claude live during a sales call with local Handy transcription. Suggests objection breaks and questions only when useful; silent otherwise.",
+            "pt-BR": "Claude rodando ao vivo durante call comercial. Transcrição local via Handy. Sugere quebra de objeção e perguntas só quando agrega; silêncio o resto do tempo."
+          },
+          "category": "sales",
+          "tags": ["call", "coach", "vendas", "comercial", "ao-vivo", "transcricao", "handy"]
+        },
+        {
+          "name": "transcrever-e-resumir-video",
+          "description": "URL do YouTube vira transcrição (Whisper) com resumo e imagem ilustrativa.",
+          "descriptions": {
+            "en": "YouTube URL becomes a transcript (Whisper) with summary and illustrative image.",
+            "pt-BR": "URL do YouTube vira transcrição (Whisper) com resumo e imagem ilustrativa."
+          },
+          "category": "content",
+          "tags": ["youtube", "video", "transcricao", "whisper", "resumo", "conteudo"]
+        }
       ]
     }
   ]

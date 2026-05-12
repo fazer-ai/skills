@@ -12,8 +12,10 @@ stays in sync automatically.
    plugin's entry in `.claude-plugin/marketplace.json` to the new
    version.
 3. The PR also propagates `description` and `descriptions` from the
-   plugin repo's `package.json`, so the copy shown in the fazer.ai hub
-   (`/claude-skills`) stays current without manual edits here.
+   plugin repo's `package.json`, plus `skills` and `coming_soon` from
+   the plugin repo's `.claude-plugin/marketplace.json`, so the copy
+   shown in the fazer.ai hub (`/claude-skills`) stays current without
+   manual edits here.
 
 **Rule of thumb:** to change a plugin's description or add a locale,
 edit the plugin's own `package.json` and cut a release. Do not hand-edit
@@ -56,20 +58,22 @@ someone adds the repo directly as a marketplace (useful for testing
 unreleased versions). Keep its `descriptions` in sync with
 `package.json` so the direct-install path matches what the hub shows.
 
-## Roadmap / "Em breve" — `coming_soon` field
+## Skills per plugin — `skills` and `coming_soon` fields
 
-Plugins that host multiple skills can advertise upcoming ones via a
-`coming_soon` array in their own `.claude-plugin/marketplace.json` (the
-plugin repo, not the central marketplace in `fazer-ai/skills`).
-Anthropic's plugin parser ignores unknown fields, so this is forward-
-compatible. The hub (`app.fazer.ai/#/claude-skills`) reads it and renders
-a separate "Em breve" section per plugin.
+Each plugin entry in `.claude-plugin/marketplace.json` declares the
+skills shipping inside it (`skills`) and the ones planned for future
+releases (`coming_soon`). The hub (`app.fazer.ai/#/claude-skills`) reads
+both arrays and renders a card per plugin with the shipped skills plus a
+separate "Em breve" section. Anthropic's plugin parser ignores unknown
+fields, so this is forward-compatible.
 
 ### Entry shape
 
+Both arrays use the same item shape:
+
 ```ts
-type ComingSoonEntry = {
-  name: string;                                // slash-command-style slug
+type SkillEntry = {
+  name: string;                                // slash-command slug
   description: string;                         // fallback / English baseline
   descriptions?: Record<string, string>;       // per-locale, same resolution as plugin-level descriptions
   category?: string;                           // free string; may differ from the plugin's category
@@ -77,24 +81,31 @@ type ComingSoonEntry = {
 };
 ```
 
+`skills` describes the skills present under `skills/<name>/SKILL.md` in
+the plugin repo. `coming_soon` describes skills planned but not yet
+shipped.
+
 ### Rules
 
-- **No ETA.** Order of the array communicates priority/release order.
-  Skipping ETAs avoids promising dates the team has not committed to.
-- **`name` and `description` required, everything else optional.** The
-  hub falls back to `description` when no locale matches (same logic as
+- **`name` and `description` required, everything else optional.** Hub
+  falls back to `description` when no locale matches (same logic as
   plugin-level `descriptions`).
 - **Granular `category` and `tags`.** A plugin classified as `devops`
-  can have a coming-soon skill classified as `security` or `monitoring`.
-  The hub uses these for filtering inside the plugin page.
-- **Lives only in the plugin repo's `marketplace.json`.** Do not
-  duplicate `coming_soon` into the central `fazer-ai/skills` marketplace.
-  The auto-bump PR step in `templates/publish.yml` only propagates
-  `description` and `descriptions`. The hub fetches each plugin repo's
-  `marketplace.json` directly to render the roadmap.
+  can have a skill classified as `security` or `monitoring`. The hub
+  uses these for filtering inside the plugin page.
+- **No ETA on `coming_soon`.** Order of the array communicates
+  priority/release order. Skipping ETAs avoids promising dates the team
+  has not committed to.
+- **Source of truth is the plugin repo.** The plugin repo's own
+  `marketplace.json` is canonical for both arrays. The auto-bump PR step
+  in `templates/publish.yml` propagates `skills` and `coming_soon` (along
+  with `version`, `description`, `descriptions`) into the central
+  `fazer-ai/skills` marketplace on each release. Hand-edit the central
+  marketplace only when seeding a new plugin before its first release.
 - **Move out, don't archive.** When a coming-soon skill ships, remove
-  its entry from `coming_soon` and add the real skill folder under
-  `skills/<name>/`. Bump the plugin minor version on release.
+  its entry from `coming_soon`, add it to `skills`, and create the real
+  skill folder under `skills/<name>/`. Bump the plugin minor version on
+  release.
 
 ### Example
 
@@ -112,6 +123,18 @@ type ComingSoonEntry = {
       },
       "category": "devops",
       "tags": ["vps", "coolify", "n8n", "infra"],
+      "skills": [
+        {
+          "name": "debugar-n8n",
+          "description": "Diagnose a failing n8n workflow from the user's symptom down to the failing node.",
+          "descriptions": {
+            "en": "Diagnose a failing n8n workflow from the user's symptom down to the failing node.",
+            "pt-BR": "Diagnostica um workflow do n8n que está falhando, do sintoma do usuário até o nó com erro."
+          },
+          "category": "devops",
+          "tags": ["n8n", "debug", "workflow"]
+        }
+      ],
       "coming_soon": [
         {
           "name": "hardening-vps",
@@ -164,7 +187,9 @@ propagation flow. The earlier steps (version check, registry auth,
 
 1. Add the plugin entry to `.claude-plugin/marketplace.json` in this
    repo (seed `name`, `description`, `descriptions`, `source`,
-   `version`, `category`, `tags`).
+   `version`, `category`, `tags`, plus `skills` and `coming_soon` if
+   already known). The first release will overwrite `skills` and
+   `coming_soon` with whatever the plugin repo declares.
 2. In the plugin repo:
    - `package.json` has `description` and `descriptions` with at least
      `en` and `pt-BR`.

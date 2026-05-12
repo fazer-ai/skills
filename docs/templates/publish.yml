@@ -84,9 +84,12 @@ jobs:
           PLUGIN_NAME="$plugin_name" \
           BUMP_VERSION="$version" \
           SRC_PKG="$src_pkg" \
+          SRC_MARKETPLACE="${GITHUB_WORKSPACE}/.claude-plugin/marketplace.json" \
           bun -e "
             const fs = require('fs');
             const pkg = JSON.parse(fs.readFileSync(process.env.SRC_PKG, 'utf8'));
+            const localMarketplace = JSON.parse(fs.readFileSync(process.env.SRC_MARKETPLACE, 'utf8'));
+            const localPlugin = localMarketplace.plugins.find(p => p.name === process.env.PLUGIN_NAME);
             const path = '.claude-plugin/marketplace.json';
             const data = JSON.parse(fs.readFileSync(path, 'utf8'));
             const plugin = data.plugins.find(p => p.name === process.env.PLUGIN_NAME);
@@ -98,6 +101,16 @@ jobs:
             plugin.source.version = process.env.BUMP_VERSION;
             if (pkg.description) plugin.description = pkg.description;
             if (pkg.descriptions) plugin.descriptions = pkg.descriptions;
+            if (localPlugin && localPlugin.skills) {
+              plugin.skills = localPlugin.skills;
+            } else {
+              delete plugin.skills;
+            }
+            if (localPlugin && localPlugin.coming_soon) {
+              plugin.coming_soon = localPlugin.coming_soon;
+            } else {
+              delete plugin.coming_soon;
+            }
             fs.writeFileSync(path, JSON.stringify(data, null, 2) + '\n');
           "
 
