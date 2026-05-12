@@ -11,6 +11,7 @@ fazer.ai subscription.
 | Name | Description |
 | ---- | ----------- |
 | `fazer-ai-atendimento` | Sets up a complete AI WhatsApp assistant for your business from scratch, all on your own infrastructure. |
+| `fazer-ai-negocio` | Skills for the commercial and operational cycle: custom Chatwoot funnel design, proposal, discovery, case study, call coach, support reporting, and video-based content generation. |
 
 ## Getting started
 

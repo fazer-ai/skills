@@ -56,6 +56,85 @@ someone adds the repo directly as a marketplace (useful for testing
 unreleased versions). Keep its `descriptions` in sync with
 `package.json` so the direct-install path matches what the hub shows.
 
+## Roadmap / "Em breve" — `coming_soon` field
+
+Plugins that host multiple skills can advertise upcoming ones via a
+`coming_soon` array in their own `.claude-plugin/marketplace.json` (the
+plugin repo, not the central marketplace in `fazer-ai/skills`).
+Anthropic's plugin parser ignores unknown fields, so this is forward-
+compatible. The hub (`app.fazer.ai/#/claude-skills`) reads it and renders
+a separate "Em breve" section per plugin.
+
+### Entry shape
+
+```ts
+type ComingSoonEntry = {
+  name: string;                                // slash-command-style slug
+  description: string;                         // fallback / English baseline
+  descriptions?: Record<string, string>;       // per-locale, same resolution as plugin-level descriptions
+  category?: string;                           // free string; may differ from the plugin's category
+  tags?: string[];                             // skill-specific tags (more granular than plugin tags)
+};
+```
+
+### Rules
+
+- **No ETA.** Order of the array communicates priority/release order.
+  Skipping ETAs avoids promising dates the team has not committed to.
+- **`name` and `description` required, everything else optional.** The
+  hub falls back to `description` when no locale matches (same logic as
+  plugin-level `descriptions`).
+- **Granular `category` and `tags`.** A plugin classified as `devops`
+  can have a coming-soon skill classified as `security` or `monitoring`.
+  The hub uses these for filtering inside the plugin page.
+- **Lives only in the plugin repo's `marketplace.json`.** Do not
+  duplicate `coming_soon` into the central `fazer-ai/skills` marketplace.
+  The auto-bump PR step in `templates/publish.yml` only propagates
+  `description` and `descriptions`. The hub fetches each plugin repo's
+  `marketplace.json` directly to render the roadmap.
+- **Move out, don't archive.** When a coming-soon skill ships, remove
+  its entry from `coming_soon` and add the real skill folder under
+  `skills/<name>/`. Bump the plugin minor version on release.
+
+### Example
+
+```json
+{
+  "plugins": [
+    {
+      "name": "fazer-ai-vps",
+      "source": "./",
+      "version": "1.0.0",
+      "description": "Skills to operate AI VPS infrastructure.",
+      "descriptions": {
+        "en": "Skills to operate AI VPS infrastructure.",
+        "pt-BR": "Skills para operar VPS de IA."
+      },
+      "category": "devops",
+      "tags": ["vps", "coolify", "n8n", "infra"],
+      "coming_soon": [
+        {
+          "name": "hardening-vps",
+          "description": "SSH key only, firewall, fail2ban, autoupdate, port and sudoers audit.",
+          "descriptions": {
+            "en": "SSH key only, firewall, fail2ban, autoupdate, port and sudoers audit.",
+            "pt-BR": "SSH key only, firewall, fail2ban, autoupdate, auditoria de portas e sudoers."
+          },
+          "category": "security",
+          "tags": ["seguranca", "ssh", "fail2ban", "firewall", "hardening"]
+        },
+        {
+          "name": "monitoramento-grafana",
+          "description": "Grafana + Prometheus: install, alerts, complex dashboards.",
+          "category": "monitoring",
+          "tags": ["grafana", "prometheus", "alertas", "dashboard"]
+        }
+      ]
+    }
+  ]
+}
+```
+
 ## Release workflow template
 
 A full, copy-pasteable workflow lives at
