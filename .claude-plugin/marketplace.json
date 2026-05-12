@@ -43,11 +43,11 @@
         "en": "Skills for the commercial and operational cycle: custom Chatwoot funnel design, proposal, discovery, case study, call coach, support reporting, and video-based content generation.",
         "pt-BR": "Skills pro ciclo comercial e operacional: funil sob medida no Chatwoot, proposta, diagnóstico, case, coach de call, relatório de atendimento e geração de conteúdo a partir de vídeo."
       },
-      "version": "1.0.0",
+      "version": "1.1.0",
       "source": {
         "source": "npm",
         "package": "@fazer-ai-pro/fazer-ai-negocio",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "registry": "https://npm.fazer.ai/"
       },
       "category": "business",
