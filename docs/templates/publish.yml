@@ -101,11 +101,13 @@ jobs:
             plugin.source.version = process.env.BUMP_VERSION;
             if (pkg.description) plugin.description = pkg.description;
             if (pkg.descriptions) plugin.descriptions = pkg.descriptions;
-            if (localPlugin && localPlugin.skills) {
-              plugin.skills = localPlugin.skills;
+            const localAvailable = localPlugin && (localPlugin.available_skills || localPlugin.skills);
+            if (localAvailable) {
+              plugin.available_skills = localAvailable;
             } else {
-              delete plugin.skills;
+              delete plugin.available_skills;
             }
+            delete plugin.skills;
             if (localPlugin && localPlugin.coming_soon) {
               plugin.coming_soon = localPlugin.coming_soon;
             } else {

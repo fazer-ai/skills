@@ -12,10 +12,10 @@ stays in sync automatically.
    plugin's entry in `.claude-plugin/marketplace.json` to the new
    version.
 3. The PR also propagates `description` and `descriptions` from the
-   plugin repo's `package.json`, plus `skills` and `coming_soon` from
-   the plugin repo's `.claude-plugin/marketplace.json`, so the copy
-   shown in the fazer.ai hub (`/claude-skills`) stays current without
-   manual edits here.
+   plugin repo's `package.json`, plus `available_skills` and
+   `coming_soon` from the plugin repo's `.claude-plugin/marketplace.json`,
+   so the copy shown in the fazer.ai hub (`/claude-skills`) stays
+   current without manual edits here.
 
 **Rule of thumb:** to change a plugin's description or add a locale,
 edit the plugin's own `package.json` and cut a release. Do not hand-edit
@@ -58,14 +58,24 @@ someone adds the repo directly as a marketplace (useful for testing
 unreleased versions). Keep its `descriptions` in sync with
 `package.json` so the direct-install path matches what the hub shows.
 
-## Skills per plugin — `skills` and `coming_soon` fields
+## Skills per plugin — `available_skills` and `coming_soon` fields
 
 Each plugin entry in `.claude-plugin/marketplace.json` declares the
-skills shipping inside it (`skills`) and the ones planned for future
-releases (`coming_soon`). The hub (`app.fazer.ai/#/claude-skills`) reads
-both arrays and renders a card per plugin with the shipped skills plus a
-separate "Em breve" section. Anthropic's plugin parser ignores unknown
-fields, so this is forward-compatible.
+skills shipping inside it (`available_skills`) and the ones planned for
+future releases (`coming_soon`). The hub (`app.fazer.ai/#/claude-skills`)
+reads both arrays and renders a card per plugin with the shipped skills
+plus a separate "Em breve" section.
+
+> **Why `available_skills` and not `skills`?** The Claude Code plugin
+> manifest schema reserves `skills` for an array of directory paths
+> (`string | string[]`) listing where to scan for `SKILL.md` files. If
+> the marketplace entry uses `skills` for an array of objects like
+> `{ name, description, ... }`, recent Claude Code versions (2.1.136+)
+> reject the entry as schema-invalid and surface it as
+> *"This plugin uses a source type your Claude Code version does not
+> support"*, blocking install/update. We use `available_skills` instead
+> so the field stays unknown to Claude Code's plugin parser (which
+> ignores unknown fields) while still being read by the hub.
 
 ### Entry shape
 
@@ -81,9 +91,9 @@ type SkillEntry = {
 };
 ```
 
-`skills` describes the skills present under `skills/<name>/SKILL.md` in
-the plugin repo. `coming_soon` describes skills planned but not yet
-shipped.
+`available_skills` describes the skills present under
+`skills/<name>/SKILL.md` in the plugin repo. `coming_soon` describes
+skills planned but not yet shipped.
 
 ### Rules
 
@@ -98,14 +108,17 @@ shipped.
   has not committed to.
 - **Source of truth is the plugin repo.** The plugin repo's own
   `marketplace.json` is canonical for both arrays. The auto-bump PR step
-  in `templates/publish.yml` propagates `skills` and `coming_soon` (along
-  with `version`, `description`, `descriptions`) into the central
-  `fazer-ai/skills` marketplace on each release. Hand-edit the central
-  marketplace only when seeding a new plugin before its first release.
+  in `templates/publish.yml` propagates `available_skills` and
+  `coming_soon` (along with `version`, `description`, `descriptions`)
+  into the central `fazer-ai/skills` marketplace on each release. For
+  backward compatibility it also accepts a legacy `skills` field in the
+  plugin repo and rewrites it as `available_skills` in the central
+  marketplace. Hand-edit the central marketplace only when seeding a new
+  plugin before its first release.
 - **Move out, don't archive.** When a coming-soon skill ships, remove
-  its entry from `coming_soon`, add it to `skills`, and create the real
-  skill folder under `skills/<name>/`. Bump the plugin minor version on
-  release.
+  its entry from `coming_soon`, add it to `available_skills`, and create
+  the real skill folder under `skills/<name>/`. Bump the plugin minor
+  version on release.
 
 ### Example
 
@@ -123,7 +136,7 @@ shipped.
       },
       "category": "devops",
       "tags": ["vps", "coolify", "n8n", "infra"],
-      "skills": [
+      "available_skills": [
         {
           "name": "debugar-n8n",
           "description": "Diagnose a failing n8n workflow from the user's symptom down to the failing node.",
@@ -187,9 +200,10 @@ propagation flow. The earlier steps (version check, registry auth,
 
 1. Add the plugin entry to `.claude-plugin/marketplace.json` in this
    repo (seed `name`, `description`, `descriptions`, `source`,
-   `version`, `category`, `tags`, plus `skills` and `coming_soon` if
-   already known). The first release will overwrite `skills` and
-   `coming_soon` with whatever the plugin repo declares.
+   `version`, `category`, `tags`, plus `available_skills` and
+   `coming_soon` if already known). The first release will overwrite
+   `available_skills` and `coming_soon` with whatever the plugin repo
+   declares.
 2. In the plugin repo:
    - `package.json` has `description` and `descriptions` with at least
      `en` and `pt-BR`.

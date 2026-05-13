@@ -35,7 +35,7 @@
         "vps",
         "hostinger"
       ],
-      "skills": [
+      "available_skills": [
         {
           "name": "fazer-ai-atendimento",
           "description": "Provisiona VPS, instala Coolify + Chatwoot fazer.ai + n8n e ativa os workflows do agente, ponta a ponta.",
@@ -76,7 +76,7 @@
         "funil",
         "kanban"
       ],
-      "skills": [
+      "available_skills": [
         {
           "name": "desenhar-funil",
           "description": "Diagnostica o funil atual, propõe redesenho enxuto sob medida e cria o Kanban pronto no Chatwoot fazer.ai. Conversa primeiro, configuração por último.",
