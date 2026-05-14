@@ -3,3 +3,5 @@
 .mcp.json
 node_modules/
 .npmrc
+.env
+!.env.example
