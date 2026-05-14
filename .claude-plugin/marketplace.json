@@ -215,11 +215,11 @@
         "en": "Skills to operate AI VPS infrastructure: debugging, migration, backup, alerts, deployment, hardening, and observability.",
         "pt-BR": "Skills pra operar VPS de IA: debug, migração, backup, alertas, deploy, hardening e observabilidade."
       },
-      "version": "1.0.0",
+      "version": "1.1.0",
       "source": {
         "source": "npm",
         "package": "@fazer-ai-pro/fazer-ai-vps",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "registry": "https://npm.fazer.ai/"
       },
       "category": "devops",
@@ -347,6 +347,24 @@
             "monitoring",
             "uptime",
             "healthcheck"
+          ]
+        },
+        {
+          "name": "rustdesk-self-host",
+          "description": "Provisiona um servidor RustDesk self-host na sua VPS (template Hostinger, VPS limpa ou ao lado de outros containers), entrega a chave pros clientes, opcionalmente aponta um domínio e mostra os logs do hbbs/hbbr.",
+          "descriptions": {
+            "en": "Provisions a self-hosted RustDesk server on a VPS (Hostinger one-click template, clean Ubuntu, or alongside existing containers), surfaces the public key for clients, optionally wires a custom domain via DNS, and tails hbbs/hbbr logs.",
+            "pt-BR": "Provisiona um servidor RustDesk self-host na sua VPS (template Hostinger, VPS limpa ou ao lado de outros containers), entrega a chave pros clientes, opcionalmente aponta um domínio e mostra os logs do hbbs/hbbr."
+          },
+          "category": "devops",
+          "tags": [
+            "rustdesk",
+            "self-host",
+            "vps",
+            "hostinger",
+            "acesso-remoto",
+            "remote-desktop",
+            "docker"
           ]
         }
       ]
