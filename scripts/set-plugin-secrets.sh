@@ -73,28 +73,33 @@ for repo in "$@"; do
   echo
   echo ">>> fazer-ai/$repo (credential: $USERNAME)"
 
-  http_code=$(curl -sS -o "$tmp_resp" -w '%{http_code}' \
-    -X POST "$REGISTRY/-/admin/credentials" \
-    -H "Authorization: Bearer $VERDACCIO_ADMIN_TOKEN" \
-    -H "Content-Type: application/json" \
-    -d "{\"name\":\"$USERNAME\",\"description\":\"$DESCRIPTION\",\"is_admin\":false}")
+  create_credential() {
+    curl -sS -o "$tmp_resp" -w '%{http_code}' \
+      -X POST "$REGISTRY/-/admin/credentials" \
+      -H "Authorization: Bearer $VERDACCIO_ADMIN_TOKEN" \
+      -H "Content-Type: application/json" \
+      -d "{\"name\":\"$USERNAME\",\"description\":\"$DESCRIPTION\",\"is_admin\":true}"
+  }
+
+  http_code=$(create_credential)
+
+  if [ "$http_code" = "409" ]; then
+    echo "  credential exists, replacing (DELETE + POST)"
+    del_code=$(curl -sS -o "$tmp_resp" -w '%{http_code}' \
+      -X DELETE "$REGISTRY/-/admin/credentials/$USERNAME" \
+      -H "Authorization: Bearer $VERDACCIO_ADMIN_TOKEN")
+    if [ "$del_code" != "204" ] && [ "$del_code" != "200" ]; then
+      echo "  delete failed: HTTP $del_code" >&2
+      cat "$tmp_resp" >&2; echo >&2
+      echo "  skipping $repo" >&2
+      continue
+    fi
+    http_code=$(create_credential)
+  fi
 
   case "$http_code" in
     201)
-      echo "  credential created"
-      secret="$(extract_secret)"
-      ;;
-    409)
-      echo "  credential exists, rotating secret"
-      http_code=$(curl -sS -o "$tmp_resp" -w '%{http_code}' \
-        -X PATCH "$REGISTRY/-/admin/credentials/$USERNAME" \
-        -H "Authorization: Bearer $VERDACCIO_ADMIN_TOKEN")
-      if [ "$http_code" != "200" ]; then
-        echo "  rotate failed: HTTP $http_code" >&2
-        cat "$tmp_resp" >&2; echo >&2
-        echo "  skipping $repo" >&2
-        continue
-      fi
+      echo "  credential created (admin)"
       secret="$(extract_secret)"
       ;;
     *)
