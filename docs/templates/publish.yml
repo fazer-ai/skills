@@ -132,3 +132,9 @@ jobs:
             --body "Auto-generated from release v${version} of ${{ github.repository }}." \
             --base main \
             --head "$branch"
+
+          # Enable auto-merge so concurrent bump PRs don't pile up and
+          # require manual merging. Skips silently if the repo doesn't
+          # allow auto-merge.
+          gh pr merge "$branch" --repo fazer-ai/skills --auto --squash --delete-branch \
+            || echo "::warning::could not enable auto-merge; merge ${branch} manually"
