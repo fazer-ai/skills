@@ -12,6 +12,9 @@ fazer.ai subscription.
 | ---- | ----------- |
 | `fazer-ai-atendimento` | Sets up a complete AI WhatsApp assistant for your business from scratch, all on your own infrastructure. |
 | `fazer-ai-negocio` | Skills for the commercial and operational cycle: custom Chatwoot funnel design, proposal, discovery, case study, call coach, support reporting, and video-based content generation. |
+| `fazer-ai-vps` | Skills to operate AI VPS infrastructure: debugging, migration, backup, alerts, deployment, hardening, and observability. |
+| `fazer-ai-agentes` | Skills to design, debug, and optimize AI agents: cost, model, prompt, simulation, and transcript debugging. |
+| `fazer-ai-skills-dev` | Skills for creating and maintaining Claude Code skills: security auditing, SKILL.md generation following the community standard, automated review loops. |
 
 ## Getting started
 

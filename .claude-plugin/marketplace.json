@@ -150,6 +150,239 @@
           "tags": ["youtube", "video", "transcricao", "whisper", "resumo", "conteudo"]
         }
       ]
+    },
+    {
+      "name": "fazer-ai-vps",
+      "description": "Skills pra operar VPS de IA: debug, migração, backup, alertas, deploy, hardening e observabilidade.",
+      "descriptions": {
+        "en": "Skills to operate AI VPS infrastructure: debugging, migration, backup, alerts, deployment, hardening, and observability.",
+        "pt-BR": "Skills pra operar VPS de IA: debug, migração, backup, alertas, deploy, hardening e observabilidade."
+      },
+      "version": "1.0.0",
+      "source": {
+        "source": "npm",
+        "package": "@fazer-ai-pro/fazer-ai-vps",
+        "version": "1.0.0",
+        "registry": "https://npm.fazer.ai/"
+      },
+      "category": "devops",
+      "tags": ["vps", "coolify", "n8n", "infra", "devops", "backup", "deploy", "monitoring", "seguranca"],
+      "skills": [
+        {
+          "name": "debugar-n8n",
+          "description": "Diagnostica e corrige problemas concretos em workflows n8n: webhook não chega, node falha, OAuth quebrado, retry mal configurado.",
+          "descriptions": {
+            "en": "Diagnose and fix concrete problems in an n8n workflow (webhook missing, workflow not triggering, node failing, OAuth broken, retry misconfigured).",
+            "pt-BR": "Diagnostica e corrige problemas concretos em workflows n8n: webhook não chega, node falha, OAuth quebrado, retry mal configurado."
+          },
+          "category": "devops",
+          "tags": ["n8n", "debug", "workflow", "webhook", "oauth"]
+        },
+        {
+          "name": "migrar-coolify",
+          "description": "Migra uma instância Coolify e todos os serviços managed entre VPS sem downtime, com verificação via sslip.io antes do cutover de DNS.",
+          "descriptions": {
+            "en": "Migrate a live Coolify instance and all managed services from one VPS to another without downtime, with sslip.io verification before DNS cutover.",
+            "pt-BR": "Migra uma instância Coolify e todos os serviços managed entre VPS sem downtime, com verificação via sslip.io antes do cutover de DNS."
+          },
+          "category": "devops",
+          "tags": ["coolify", "migracao", "vps", "dns", "sslip"]
+        },
+        {
+          "name": "backup-restore-coolify",
+          "description": "Configura backups automatizados pra VPS Coolify e roda drill de restore em VPS limpo pra validar a cadeia ponta a ponta.",
+          "descriptions": {
+            "en": "Configure automated backups for a Coolify VPS and run a drill restore on a clean test VPS to validate the backup chain end-to-end.",
+            "pt-BR": "Configura backups automatizados pra VPS Coolify e roda drill de restore em VPS limpo pra validar a cadeia ponta a ponta."
+          },
+          "category": "devops",
+          "tags": ["coolify", "backup", "restore", "drill", "s3"]
+        },
+        {
+          "name": "alertas-vps",
+          "description": "Configura alertas e dashboard de status pra uma VPS rodando Coolify, Chatwoot, n8n ou Baileys.",
+          "descriptions": {
+            "en": "Set up alerting and a status dashboard for a single VPS running Coolify, Chatwoot, n8n or Baileys.",
+            "pt-BR": "Configura alertas e dashboard de status pra uma VPS rodando Coolify, Chatwoot, n8n ou Baileys."
+          },
+          "category": "monitoring",
+          "tags": ["alertas", "dashboard", "monitoring", "uptime", "healthcheck"]
+        }
+      ],
+      "coming_soon": [
+        {
+          "name": "deploy-coolify-app",
+          "description": "Deploy de uma aplicação nova no Coolify a partir de um repositório Git: detecta stack, configura domínio, healthcheck e variáveis de ambiente.",
+          "descriptions": {
+            "en": "Deploy a new application on Coolify from a Git repository: stack detection, domain, healthcheck, and env vars.",
+            "pt-BR": "Deploy de uma aplicação nova no Coolify a partir de um repositório Git: detecta stack, configura domínio, healthcheck e variáveis de ambiente."
+          },
+          "category": "devops",
+          "tags": ["coolify", "deploy", "ci-cd", "docker", "traefik"]
+        },
+        {
+          "name": "hardening-vps",
+          "description": "Hardening básico de VPS Linux: SSH key only, firewall, fail2ban, autoupdate, auditoria de portas e sudoers.",
+          "descriptions": {
+            "en": "Basic Linux VPS hardening: SSH key only, firewall, fail2ban, autoupdate, port and sudoers audit.",
+            "pt-BR": "Hardening básico de VPS Linux: SSH key only, firewall, fail2ban, autoupdate, auditoria de portas e sudoers."
+          },
+          "category": "security",
+          "tags": ["seguranca", "ssh", "fail2ban", "firewall", "hardening"]
+        },
+        {
+          "name": "monitoramento-grafana",
+          "description": "Instalação e configuração de Grafana + Prometheus na VPS: dashboards prontos, alertas e métricas de Docker e aplicação.",
+          "descriptions": {
+            "en": "Grafana + Prometheus install and configuration on the VPS: ready-made dashboards, alerts, and Docker plus app metrics.",
+            "pt-BR": "Instalação e configuração de Grafana + Prometheus na VPS: dashboards prontos, alertas e métricas de Docker e aplicação."
+          },
+          "category": "monitoring",
+          "tags": ["grafana", "prometheus", "alertas", "dashboard", "observabilidade"]
+        }
+      ]
+    },
+    {
+      "name": "fazer-ai-agentes",
+      "description": "Skills pra desenhar, debugar e otimizar agentes de IA: custo, modelo, prompt, simulação e debug de transcript.",
+      "descriptions": {
+        "en": "Skills to design, debug, and optimize AI agents: cost, model, prompt, simulation, and transcript debugging.",
+        "pt-BR": "Skills pra desenhar, debugar e otimizar agentes de IA: custo, modelo, prompt, simulação e debug de transcript."
+      },
+      "version": "1.0.0",
+      "source": {
+        "source": "npm",
+        "package": "@fazer-ai-pro/fazer-ai-agentes",
+        "version": "1.0.0",
+        "registry": "https://npm.fazer.ai/"
+      },
+      "category": "ai",
+      "tags": ["ia", "agente", "llm", "prompt", "n8n", "claude", "gpt", "gemini", "custo", "debug"],
+      "skills": [
+        {
+          "name": "debugar-agente",
+          "description": "Diagnostica por que um agente de IA deu resposta ruim em um transcript específico e propõe correção mínima com teste de regressão.",
+          "descriptions": {
+            "en": "Diagnose why an AI agent (Claude/GPT/Gemini, any SDK or n8n) gave a bad response on a specific transcript and propose a minimal fix with a regression test.",
+            "pt-BR": "Diagnostica por que um agente de IA deu resposta ruim em um transcript específico e propõe correção mínima com teste de regressão."
+          },
+          "category": "ai",
+          "tags": ["agente", "debug", "transcript", "llm", "regressao"]
+        },
+        {
+          "name": "calcular-custo-tokens",
+          "description": "Estima ou mede o custo mensal em R$ de rodar um agente de IA em produção. Útil pra cotação de projeto, comparação de modelos e revisão de margem.",
+          "descriptions": {
+            "en": "Estimate or measure the monthly BRL cost of running an AI agent in production. Useful for project quoting, model comparison, and margin review.",
+            "pt-BR": "Estima ou mede o custo mensal em R$ de rodar um agente de IA em produção. Útil pra cotação de projeto, comparação de modelos e revisão de margem."
+          },
+          "category": "ai",
+          "tags": ["custo", "tokens", "orcamento", "llm", "cotacao"]
+        }
+      ],
+      "coming_soon": [
+        {
+          "name": "escolher-modelo-llm",
+          "description": "Compara modelos LLM (Claude, GPT, Gemini, Llama) pra um caso de uso específico considerando custo, latência, qualidade e features.",
+          "descriptions": {
+            "en": "Compares LLM models (Claude, GPT, Gemini, Llama) for a specific use case considering cost, latency, quality, and features.",
+            "pt-BR": "Compara modelos LLM (Claude, GPT, Gemini, Llama) pra um caso de uso específico considerando custo, latência, qualidade e features."
+          },
+          "category": "ai",
+          "tags": ["modelo", "llm", "comparacao", "claude", "gpt", "gemini"]
+        },
+        {
+          "name": "revisar-workflow-n8n",
+          "description": "Review estático de workflow n8n: detecta nodes sem error handling, credenciais hardcoded, loops sem limite, prompts mal estruturados.",
+          "descriptions": {
+            "en": "Static review of n8n workflows: detects nodes without error handling, hardcoded credentials, unbounded loops, poorly structured prompts.",
+            "pt-BR": "Review estático de workflow n8n: detecta nodes sem error handling, credenciais hardcoded, loops sem limite, prompts mal estruturados."
+          },
+          "category": "ai",
+          "tags": ["n8n", "workflow", "review", "audit", "best-practices"]
+        },
+        {
+          "name": "simular-conversa-agente",
+          "description": "Simula uma conversa real com um agente em diferentes personas pra validar comportamento antes de subir pra produção.",
+          "descriptions": {
+            "en": "Simulates a real conversation with an agent across different personas to validate behavior before production.",
+            "pt-BR": "Simula uma conversa real com um agente em diferentes personas pra validar comportamento antes de subir pra produção."
+          },
+          "category": "ai",
+          "tags": ["agente", "simulacao", "teste", "persona", "qa"]
+        },
+        {
+          "name": "avaliar-prompt",
+          "description": "Roda uma bateria de avaliações sobre um prompt: clareza, robustez a edge cases, consistência entre execuções e custo médio.",
+          "descriptions": {
+            "en": "Runs a battery of evaluations on a prompt: clarity, robustness to edge cases, consistency across runs, and average cost.",
+            "pt-BR": "Roda uma bateria de avaliações sobre um prompt: clareza, robustez a edge cases, consistência entre execuções e custo médio."
+          },
+          "category": "ai",
+          "tags": ["prompt", "eval", "qualidade", "agente", "teste"]
+        }
+      ]
+    },
+    {
+      "name": "fazer-ai-skills-dev",
+      "description": "Skills pra criar e manter skills do Claude Code: auditoria de segurança, geração de SKILL.md no padrão da comunidade, loops de review automatizado.",
+      "descriptions": {
+        "en": "Skills for creating and maintaining Claude Code skills: security auditing, SKILL.md generation following the community standard, automated review loops.",
+        "pt-BR": "Skills pra criar e manter skills do Claude Code: auditoria de segurança, geração de SKILL.md no padrão da comunidade, loops de review automatizado."
+      },
+      "version": "1.0.0",
+      "source": {
+        "source": "npm",
+        "package": "@fazer-ai-pro/fazer-ai-skills-dev",
+        "version": "1.0.0",
+        "registry": "https://npm.fazer.ai/"
+      },
+      "category": "development",
+      "tags": ["skill", "claude-code", "review", "auditoria", "meta", "seguranca", "template", "coderabbit"],
+      "skills": [
+        {
+          "name": "auditar-skill",
+          "description": "Audita skills do Claude Code antes de permitir execução; instala, atualiza e desinstala o hook global que bloqueia skills não auditadas.",
+          "descriptions": {
+            "en": "Audit Claude Code skills for safety before allowing execution; install, update, and uninstall the global hook that blocks unaudited skills.",
+            "pt-BR": "Audita skills do Claude Code antes de permitir execução; instala, atualiza e desinstala o hook global que bloqueia skills não auditadas."
+          },
+          "category": "security",
+          "tags": ["skill", "auditoria", "seguranca", "hook", "claude-code"]
+        }
+      ],
+      "coming_soon": [
+        {
+          "name": "criar-skill-comunidade",
+          "description": "Scaffold de skill no padrão da comunidade fazer.ai: SKILL.md com phases, scripts em Python, frontmatter correto e progressive disclosure aplicada.",
+          "descriptions": {
+            "en": "Scaffold a skill in the fazer.ai community standard: SKILL.md with phases, Python scripts, correct frontmatter, and progressive disclosure.",
+            "pt-BR": "Scaffold de skill no padrão da comunidade fazer.ai: SKILL.md com phases, scripts em Python, frontmatter correto e progressive disclosure aplicada."
+          },
+          "category": "development",
+          "tags": ["skill", "template", "scaffold", "claude-code", "comunidade"]
+        },
+        {
+          "name": "review-loop",
+          "description": "Loop automatizado de review por bot (CodeRabbit, Copilot): pede review em PR, monitora feedback, aplica fixes e repete até zerar comentários.",
+          "descriptions": {
+            "en": "Automated bot review loop (CodeRabbit, Copilot): requests review on a PR, monitors feedback, applies fixes, and repeats until clean.",
+            "pt-BR": "Loop automatizado de review por bot (CodeRabbit, Copilot): pede review em PR, monitora feedback, aplica fixes e repete até zerar comentários."
+          },
+          "category": "development",
+          "tags": ["review", "ci", "pr", "coderabbit", "copilot", "automacao"]
+        },
+        {
+          "name": "review-paralelo-com-personas",
+          "description": "Spawna agentes de review em paralelo com personas diferentes (bug, segurança, testes, UX, prosa, infra) e consolida findings em relatório acionável.",
+          "descriptions": {
+            "en": "Spawns parallel review agents with different personas (bugs, security, tests, UX, prose, infra) and consolidates findings into an actionable report.",
+            "pt-BR": "Spawna agentes de review em paralelo com personas diferentes (bug, segurança, testes, UX, prosa, infra) e consolida findings em relatório acionável."
+          },
+          "category": "development",
+          "tags": ["review", "personas", "subagentes", "auditoria", "qa"]
+        }
+      ]
     }
   ]
 }
