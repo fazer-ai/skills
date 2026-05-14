@@ -378,40 +378,6 @@
         "custo",
         "debug"
       ],
-      "skills": [
-        {
-          "name": "debugar-agente",
-          "description": "Diagnostica por que um agente de IA deu resposta ruim em um transcript específico e propõe correção mínima com teste de regressão.",
-          "descriptions": {
-            "en": "Diagnose why an AI agent (Claude/GPT/Gemini, any SDK or n8n) gave a bad response on a specific transcript and propose a minimal fix with a regression test.",
-            "pt-BR": "Diagnostica por que um agente de IA deu resposta ruim em um transcript específico e propõe correção mínima com teste de regressão."
-          },
-          "category": "ai",
-          "tags": [
-            "agente",
-            "debug",
-            "transcript",
-            "llm",
-            "regressao"
-          ]
-        },
-        {
-          "name": "calcular-custo-tokens",
-          "description": "Estima ou mede o custo mensal em R$ de rodar um agente de IA em produção. Útil pra cotação de projeto, comparação de modelos e revisão de margem.",
-          "descriptions": {
-            "en": "Estimate or measure the monthly BRL cost of running an AI agent in production. Useful for project quoting, model comparison, and margin review.",
-            "pt-BR": "Estima ou mede o custo mensal em R$ de rodar um agente de IA em produção. Útil pra cotação de projeto, comparação de modelos e revisão de margem."
-          },
-          "category": "ai",
-          "tags": [
-            "custo",
-            "tokens",
-            "orcamento",
-            "llm",
-            "cotacao"
-          ]
-        }
-      ],
       "coming_soon": [
         {
           "name": "escolher-modelo-llm",
@@ -478,6 +444,40 @@
             "teste"
           ]
         }
+      ],
+      "available_skills": [
+        {
+          "name": "debugar-agente",
+          "description": "Diagnostica por que um agente de IA deu resposta ruim em um transcript específico e propõe correção mínima com teste de regressão.",
+          "descriptions": {
+            "en": "Diagnose why an AI agent (Claude/GPT/Gemini, any SDK or n8n) gave a bad response on a specific transcript and propose a minimal fix with a regression test.",
+            "pt-BR": "Diagnostica por que um agente de IA deu resposta ruim em um transcript específico e propõe correção mínima com teste de regressão."
+          },
+          "category": "ai",
+          "tags": [
+            "agente",
+            "debug",
+            "transcript",
+            "llm",
+            "regressao"
+          ]
+        },
+        {
+          "name": "calcular-custo-tokens",
+          "description": "Estima ou mede o custo mensal em R$ de rodar um agente de IA em produção. Útil pra cotação de projeto, comparação de modelos e revisão de margem.",
+          "descriptions": {
+            "en": "Estimate or measure the monthly BRL cost of running an AI agent in production. Useful for project quoting, model comparison, and margin review.",
+            "pt-BR": "Estima ou mede o custo mensal em R$ de rodar um agente de IA em produção. Útil pra cotação de projeto, comparação de modelos e revisão de margem."
+          },
+          "category": "ai",
+          "tags": [
+            "custo",
+            "tokens",
+            "orcamento",
+            "llm",
+            "cotacao"
+          ]
+        }
       ]
     },
     {
@@ -504,24 +504,6 @@
         "seguranca",
         "template",
         "coderabbit"
-      ],
-      "skills": [
-        {
-          "name": "auditar-skill",
-          "description": "Audita skills do Claude Code antes de permitir execução; instala, atualiza e desinstala o hook global que bloqueia skills não auditadas.",
-          "descriptions": {
-            "en": "Audit Claude Code skills for safety before allowing execution; install, update, and uninstall the global hook that blocks unaudited skills.",
-            "pt-BR": "Audita skills do Claude Code antes de permitir execução; instala, atualiza e desinstala o hook global que bloqueia skills não auditadas."
-          },
-          "category": "security",
-          "tags": [
-            "skill",
-            "auditoria",
-            "seguranca",
-            "hook",
-            "claude-code"
-          ]
-        }
       ],
       "coming_soon": [
         {
@@ -571,6 +553,24 @@
             "subagentes",
             "auditoria",
             "qa"
+          ]
+        }
+      ],
+      "available_skills": [
+        {
+          "name": "auditar-skill",
+          "description": "Audita skills do Claude Code antes de permitir execução; instala, atualiza e desinstala o hook global que bloqueia skills não auditadas.",
+          "descriptions": {
+            "en": "Audit Claude Code skills for safety before allowing execution; install, update, and uninstall the global hook that blocks unaudited skills.",
+            "pt-BR": "Audita skills do Claude Code antes de permitir execução; instala, atualiza e desinstala o hook global que bloqueia skills não auditadas."
+          },
+          "category": "security",
+          "tags": [
+            "skill",
+            "auditoria",
+            "seguranca",
+            "hook",
+            "claude-code"
           ]
         }
       ]
