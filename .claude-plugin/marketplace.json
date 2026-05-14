@@ -44,7 +44,16 @@
             "pt-BR": "Provisiona VPS, instala Coolify + Chatwoot fazer.ai + n8n e ativa os workflows do agente, ponta a ponta."
           },
           "category": "devops",
-          "tags": ["atendimento", "whatsapp", "ia", "agente", "chatwoot", "n8n", "coolify", "vps"]
+          "tags": [
+            "atendimento",
+            "whatsapp",
+            "ia",
+            "agente",
+            "chatwoot",
+            "n8n",
+            "coolify",
+            "vps"
+          ]
         }
       ]
     },
@@ -85,7 +94,14 @@
             "pt-BR": "Diagnostica o funil atual, propõe redesenho enxuto sob medida e cria o Kanban pronto no Chatwoot fazer.ai. Conversa primeiro, configuração por último."
           },
           "category": "commercial",
-          "tags": ["funil", "kanban", "chatwoot", "diagnostico", "comercial", "vendas"]
+          "tags": [
+            "funil",
+            "kanban",
+            "chatwoot",
+            "diagnostico",
+            "comercial",
+            "vendas"
+          ]
         }
       ],
       "coming_soon": [
@@ -97,7 +113,13 @@
             "pt-BR": "Proposta comercial em MD/PDF: escopo, prazo, preço, premissas e exclusões. Treinada com propostas reais da comunidade."
           },
           "category": "commercial",
-          "tags": ["proposta", "comercial", "vendas", "cliente", "pdf"]
+          "tags": [
+            "proposta",
+            "comercial",
+            "vendas",
+            "cliente",
+            "pdf"
+          ]
         },
         {
           "name": "preparar-diagnostico-cliente",
@@ -107,7 +129,13 @@
             "pt-BR": "Pesquisa de cliente e 7 perguntas-chave pra reunião de diagnóstico. Recebe nome, site, Instagram e histórico de mensagens."
           },
           "category": "commercial",
-          "tags": ["diagnostico", "discovery", "cliente", "pesquisa", "comercial"]
+          "tags": [
+            "diagnostico",
+            "discovery",
+            "cliente",
+            "pesquisa",
+            "comercial"
+          ]
         },
         {
           "name": "relatorio-chatwoot",
@@ -117,7 +145,15 @@
             "pt-BR": "Relatório de atendimento via API do Chatwoot: TMR, CSAT, volume, agente top, etiquetas e conversas abandonadas. Saída em CSV/MD com filtros por inbox, equipe e período."
           },
           "category": "analytics",
-          "tags": ["chatwoot", "relatorio", "metricas", "atendimento", "csat", "tmr", "csv"]
+          "tags": [
+            "chatwoot",
+            "relatorio",
+            "metricas",
+            "atendimento",
+            "csat",
+            "tmr",
+            "csv"
+          ]
         },
         {
           "name": "case-portfolio",
@@ -127,7 +163,13 @@
             "pt-BR": "Projeto entregue vira estudo de caso: problema, solução e resultado em números. Estrutura pronta pra publicação."
           },
           "category": "content",
-          "tags": ["case", "portfolio", "conteudo", "marketing", "resultado"]
+          "tags": [
+            "case",
+            "portfolio",
+            "conteudo",
+            "marketing",
+            "resultado"
+          ]
         },
         {
           "name": "coach-call",
@@ -137,7 +179,15 @@
             "pt-BR": "Claude rodando ao vivo durante call comercial. Transcrição local via Handy. Sugere quebra de objeção e perguntas só quando agrega; silêncio o resto do tempo."
           },
           "category": "sales",
-          "tags": ["call", "coach", "vendas", "comercial", "ao-vivo", "transcricao", "handy"]
+          "tags": [
+            "call",
+            "coach",
+            "vendas",
+            "comercial",
+            "ao-vivo",
+            "transcricao",
+            "handy"
+          ]
         },
         {
           "name": "transcrever-e-resumir-video",
@@ -147,7 +197,14 @@
             "pt-BR": "URL do YouTube vira transcrição (Whisper) com resumo e imagem ilustrativa."
           },
           "category": "content",
-          "tags": ["youtube", "video", "transcricao", "whisper", "resumo", "conteudo"]
+          "tags": [
+            "youtube",
+            "video",
+            "transcricao",
+            "whisper",
+            "resumo",
+            "conteudo"
+          ]
         }
       ]
     },
@@ -166,48 +223,16 @@
         "registry": "https://npm.fazer.ai/"
       },
       "category": "devops",
-      "tags": ["vps", "coolify", "n8n", "infra", "devops", "backup", "deploy", "monitoring", "seguranca"],
-      "skills": [
-        {
-          "name": "debugar-n8n",
-          "description": "Diagnostica e corrige problemas concretos em workflows n8n: webhook não chega, node falha, OAuth quebrado, retry mal configurado.",
-          "descriptions": {
-            "en": "Diagnose and fix concrete problems in an n8n workflow (webhook missing, workflow not triggering, node failing, OAuth broken, retry misconfigured).",
-            "pt-BR": "Diagnostica e corrige problemas concretos em workflows n8n: webhook não chega, node falha, OAuth quebrado, retry mal configurado."
-          },
-          "category": "devops",
-          "tags": ["n8n", "debug", "workflow", "webhook", "oauth"]
-        },
-        {
-          "name": "migrar-coolify",
-          "description": "Migra uma instância Coolify e todos os serviços managed entre VPS sem downtime, com verificação via sslip.io antes do cutover de DNS.",
-          "descriptions": {
-            "en": "Migrate a live Coolify instance and all managed services from one VPS to another without downtime, with sslip.io verification before DNS cutover.",
-            "pt-BR": "Migra uma instância Coolify e todos os serviços managed entre VPS sem downtime, com verificação via sslip.io antes do cutover de DNS."
-          },
-          "category": "devops",
-          "tags": ["coolify", "migracao", "vps", "dns", "sslip"]
-        },
-        {
-          "name": "backup-restore-coolify",
-          "description": "Configura backups automatizados pra VPS Coolify e roda drill de restore em VPS limpo pra validar a cadeia ponta a ponta.",
-          "descriptions": {
-            "en": "Configure automated backups for a Coolify VPS and run a drill restore on a clean test VPS to validate the backup chain end-to-end.",
-            "pt-BR": "Configura backups automatizados pra VPS Coolify e roda drill de restore em VPS limpo pra validar a cadeia ponta a ponta."
-          },
-          "category": "devops",
-          "tags": ["coolify", "backup", "restore", "drill", "s3"]
-        },
-        {
-          "name": "alertas-vps",
-          "description": "Configura alertas e dashboard de status pra uma VPS rodando Coolify, Chatwoot, n8n ou Baileys.",
-          "descriptions": {
-            "en": "Set up alerting and a status dashboard for a single VPS running Coolify, Chatwoot, n8n or Baileys.",
-            "pt-BR": "Configura alertas e dashboard de status pra uma VPS rodando Coolify, Chatwoot, n8n ou Baileys."
-          },
-          "category": "monitoring",
-          "tags": ["alertas", "dashboard", "monitoring", "uptime", "healthcheck"]
-        }
+      "tags": [
+        "vps",
+        "coolify",
+        "n8n",
+        "infra",
+        "devops",
+        "backup",
+        "deploy",
+        "monitoring",
+        "seguranca"
       ],
       "coming_soon": [
         {
@@ -218,7 +243,13 @@
             "pt-BR": "Deploy de uma aplicação nova no Coolify a partir de um repositório Git: detecta stack, configura domínio, healthcheck e variáveis de ambiente."
           },
           "category": "devops",
-          "tags": ["coolify", "deploy", "ci-cd", "docker", "traefik"]
+          "tags": [
+            "coolify",
+            "deploy",
+            "ci-cd",
+            "docker",
+            "traefik"
+          ]
         },
         {
           "name": "hardening-vps",
@@ -228,7 +259,13 @@
             "pt-BR": "Hardening básico de VPS Linux: SSH key only, firewall, fail2ban, autoupdate, auditoria de portas e sudoers."
           },
           "category": "security",
-          "tags": ["seguranca", "ssh", "fail2ban", "firewall", "hardening"]
+          "tags": [
+            "seguranca",
+            "ssh",
+            "fail2ban",
+            "firewall",
+            "hardening"
+          ]
         },
         {
           "name": "monitoramento-grafana",
@@ -238,7 +275,79 @@
             "pt-BR": "Instalação e configuração de Grafana + Prometheus na VPS: dashboards prontos, alertas e métricas de Docker e aplicação."
           },
           "category": "monitoring",
-          "tags": ["grafana", "prometheus", "alertas", "dashboard", "observabilidade"]
+          "tags": [
+            "grafana",
+            "prometheus",
+            "alertas",
+            "dashboard",
+            "observabilidade"
+          ]
+        }
+      ],
+      "available_skills": [
+        {
+          "name": "debugar-n8n",
+          "description": "Diagnostica e corrige problemas concretos em workflows n8n: webhook não chega, node falha, OAuth quebrado, retry mal configurado.",
+          "descriptions": {
+            "en": "Diagnose and fix concrete problems in an n8n workflow (webhook missing, workflow not triggering, node failing, OAuth broken, retry misconfigured).",
+            "pt-BR": "Diagnostica e corrige problemas concretos em workflows n8n: webhook não chega, node falha, OAuth quebrado, retry mal configurado."
+          },
+          "category": "devops",
+          "tags": [
+            "n8n",
+            "debug",
+            "workflow",
+            "webhook",
+            "oauth"
+          ]
+        },
+        {
+          "name": "migrar-coolify",
+          "description": "Migra uma instância Coolify e todos os serviços managed entre VPS sem downtime, com verificação via sslip.io antes do cutover de DNS.",
+          "descriptions": {
+            "en": "Migrate a live Coolify instance and all managed services from one VPS to another without downtime, with sslip.io verification before DNS cutover.",
+            "pt-BR": "Migra uma instância Coolify e todos os serviços managed entre VPS sem downtime, com verificação via sslip.io antes do cutover de DNS."
+          },
+          "category": "devops",
+          "tags": [
+            "coolify",
+            "migracao",
+            "vps",
+            "dns",
+            "sslip"
+          ]
+        },
+        {
+          "name": "backup-restore-coolify",
+          "description": "Configura backups automatizados pra VPS Coolify e roda drill de restore em VPS limpo pra validar a cadeia ponta a ponta.",
+          "descriptions": {
+            "en": "Configure automated backups for a Coolify VPS and run a drill restore on a clean test VPS to validate the backup chain end-to-end.",
+            "pt-BR": "Configura backups automatizados pra VPS Coolify e roda drill de restore em VPS limpo pra validar a cadeia ponta a ponta."
+          },
+          "category": "devops",
+          "tags": [
+            "coolify",
+            "backup",
+            "restore",
+            "drill",
+            "s3"
+          ]
+        },
+        {
+          "name": "alertas-vps",
+          "description": "Configura alertas e dashboard de status pra uma VPS rodando Coolify, Chatwoot, n8n ou Baileys.",
+          "descriptions": {
+            "en": "Set up alerting and a status dashboard for a single VPS running Coolify, Chatwoot, n8n or Baileys.",
+            "pt-BR": "Configura alertas e dashboard de status pra uma VPS rodando Coolify, Chatwoot, n8n ou Baileys."
+          },
+          "category": "monitoring",
+          "tags": [
+            "alertas",
+            "dashboard",
+            "monitoring",
+            "uptime",
+            "healthcheck"
+          ]
         }
       ]
     },
@@ -257,7 +366,18 @@
         "registry": "https://npm.fazer.ai/"
       },
       "category": "ai",
-      "tags": ["ia", "agente", "llm", "prompt", "n8n", "claude", "gpt", "gemini", "custo", "debug"],
+      "tags": [
+        "ia",
+        "agente",
+        "llm",
+        "prompt",
+        "n8n",
+        "claude",
+        "gpt",
+        "gemini",
+        "custo",
+        "debug"
+      ],
       "skills": [
         {
           "name": "debugar-agente",
@@ -267,7 +387,13 @@
             "pt-BR": "Diagnostica por que um agente de IA deu resposta ruim em um transcript específico e propõe correção mínima com teste de regressão."
           },
           "category": "ai",
-          "tags": ["agente", "debug", "transcript", "llm", "regressao"]
+          "tags": [
+            "agente",
+            "debug",
+            "transcript",
+            "llm",
+            "regressao"
+          ]
         },
         {
           "name": "calcular-custo-tokens",
@@ -277,7 +403,13 @@
             "pt-BR": "Estima ou mede o custo mensal em R$ de rodar um agente de IA em produção. Útil pra cotação de projeto, comparação de modelos e revisão de margem."
           },
           "category": "ai",
-          "tags": ["custo", "tokens", "orcamento", "llm", "cotacao"]
+          "tags": [
+            "custo",
+            "tokens",
+            "orcamento",
+            "llm",
+            "cotacao"
+          ]
         }
       ],
       "coming_soon": [
@@ -289,7 +421,14 @@
             "pt-BR": "Compara modelos LLM (Claude, GPT, Gemini, Llama) pra um caso de uso específico considerando custo, latência, qualidade e features."
           },
           "category": "ai",
-          "tags": ["modelo", "llm", "comparacao", "claude", "gpt", "gemini"]
+          "tags": [
+            "modelo",
+            "llm",
+            "comparacao",
+            "claude",
+            "gpt",
+            "gemini"
+          ]
         },
         {
           "name": "revisar-workflow-n8n",
@@ -299,7 +438,13 @@
             "pt-BR": "Review estático de workflow n8n: detecta nodes sem error handling, credenciais hardcoded, loops sem limite, prompts mal estruturados."
           },
           "category": "ai",
-          "tags": ["n8n", "workflow", "review", "audit", "best-practices"]
+          "tags": [
+            "n8n",
+            "workflow",
+            "review",
+            "audit",
+            "best-practices"
+          ]
         },
         {
           "name": "simular-conversa-agente",
@@ -309,7 +454,13 @@
             "pt-BR": "Simula uma conversa real com um agente em diferentes personas pra validar comportamento antes de subir pra produção."
           },
           "category": "ai",
-          "tags": ["agente", "simulacao", "teste", "persona", "qa"]
+          "tags": [
+            "agente",
+            "simulacao",
+            "teste",
+            "persona",
+            "qa"
+          ]
         },
         {
           "name": "avaliar-prompt",
@@ -319,7 +470,13 @@
             "pt-BR": "Roda uma bateria de avaliações sobre um prompt: clareza, robustez a edge cases, consistência entre execuções e custo médio."
           },
           "category": "ai",
-          "tags": ["prompt", "eval", "qualidade", "agente", "teste"]
+          "tags": [
+            "prompt",
+            "eval",
+            "qualidade",
+            "agente",
+            "teste"
+          ]
         }
       ]
     },
@@ -338,7 +495,16 @@
         "registry": "https://npm.fazer.ai/"
       },
       "category": "development",
-      "tags": ["skill", "claude-code", "review", "auditoria", "meta", "seguranca", "template", "coderabbit"],
+      "tags": [
+        "skill",
+        "claude-code",
+        "review",
+        "auditoria",
+        "meta",
+        "seguranca",
+        "template",
+        "coderabbit"
+      ],
       "skills": [
         {
           "name": "auditar-skill",
@@ -348,7 +514,13 @@
             "pt-BR": "Audita skills do Claude Code antes de permitir execução; instala, atualiza e desinstala o hook global que bloqueia skills não auditadas."
           },
           "category": "security",
-          "tags": ["skill", "auditoria", "seguranca", "hook", "claude-code"]
+          "tags": [
+            "skill",
+            "auditoria",
+            "seguranca",
+            "hook",
+            "claude-code"
+          ]
         }
       ],
       "coming_soon": [
@@ -360,7 +532,13 @@
             "pt-BR": "Scaffold de skill no padrão da comunidade fazer.ai: SKILL.md com phases, scripts em Python, frontmatter correto e progressive disclosure aplicada."
           },
           "category": "development",
-          "tags": ["skill", "template", "scaffold", "claude-code", "comunidade"]
+          "tags": [
+            "skill",
+            "template",
+            "scaffold",
+            "claude-code",
+            "comunidade"
+          ]
         },
         {
           "name": "review-loop",
@@ -370,7 +548,14 @@
             "pt-BR": "Loop automatizado de review por bot (CodeRabbit, Copilot): pede review em PR, monitora feedback, aplica fixes e repete até zerar comentários."
           },
           "category": "development",
-          "tags": ["review", "ci", "pr", "coderabbit", "copilot", "automacao"]
+          "tags": [
+            "review",
+            "ci",
+            "pr",
+            "coderabbit",
+            "copilot",
+            "automacao"
+          ]
         },
         {
           "name": "review-paralelo-com-personas",
@@ -380,7 +565,13 @@
             "pt-BR": "Spawna agentes de review em paralelo com personas diferentes (bug, segurança, testes, UX, prosa, infra) e consolida findings em relatório acionável."
           },
           "category": "development",
-          "tags": ["review", "personas", "subagentes", "auditoria", "qa"]
+          "tags": [
+            "review",
+            "personas",
+            "subagentes",
+            "auditoria",
+            "qa"
+          ]
         }
       ]
     }
