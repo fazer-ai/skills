@@ -68,7 +68,7 @@ the `publish.yml` workflow:
 | ------ | ----- | ----- |
 | `NPM_REGISTRY_USER` | `ci-fazer-ai-<name>` | the Verdaccio username |
 | `NPM_REGISTRY_TOKEN` | the password set above | used as the password, not as a token. Both values are base64'd as `user:pass` for Basic auth |
-| `SKILLS_REPO_PAT` | a GitHub fine-grained PAT | needs **Contents: Write** + **Pull requests: Write** on `fazer-ai/skills`. Shared across all plugin repos (one PAT, set in each repo) |
+| `SKILLS_REPO_PAT` | a GitHub fine-grained PAT | needs **Contents: Write** + **Pull requests: Write** on `fazer-ai/skills`. Recommended: one PAT per plugin repo so revocation has tight blast radius |
 
 Set them with:
 
@@ -78,8 +78,10 @@ gh secret set NPM_REGISTRY_TOKEN --repo fazer-ai/<repo> --body "$NPM_TOKEN"
 gh secret set SKILLS_REPO_PAT    --repo fazer-ai/<repo> --body "$PAT"
 ```
 
-The helper script `~/set-plugin-secrets.sh` does the user creation and
-secret-set in one go.
+The helper script `scripts/set-plugin-secrets.sh` (in this repo) does
+the user creation and secret-set in one go for any list of repos. It
+reads `VERDACCIO_ADMIN_TOKEN` and per-repo PATs from `.env` (see
+`.env.example` for the variable naming convention).
 
 ## Publish workflow expectations
 
