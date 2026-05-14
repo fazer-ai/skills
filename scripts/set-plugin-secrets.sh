@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Creates a Verdaccio CI user on npm.fazer.ai and sets the GitHub Actions
-# secrets needed by a plugin repo's publish workflow. Idempotent: PUT on
-# the Verdaccio user endpoint overwrites the password.
+# Creates a publisher credential on npm.fazer.ai (custom Verdaccio admin
+# plugin) for each given plugin repo and sets the corresponding GitHub
+# Actions secrets. If the credential already exists, rotates the secret.
 #
 # Usage:
 #   ./scripts/set-plugin-secrets.sh <repo> [<repo> ...]
@@ -14,11 +14,10 @@
 #                                  converted to underscores). E.g.
 #                                  fazer-ai-vps  ->  FAZER_AI_VPS_PAT
 #   VERDACCIO_REGISTRY           - optional, default https://npm.fazer.ai
-#   VERDACCIO_USER_EMAIL         - optional, default ops@fazer.ai
 #
 # Anything not in .env is prompted interactively.
 #
-# Requires: gh (logged in), curl, openssl.
+# Requires: gh (logged in), curl, python3.
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -42,7 +41,6 @@ EOF
 fi
 
 REGISTRY="${VERDACCIO_REGISTRY:-https://npm.fazer.ai}"
-EMAIL="${VERDACCIO_USER_EMAIL:-ops@fazer.ai}"
 
 if [ -z "${VERDACCIO_ADMIN_TOKEN:-}" ]; then
   read -r -s -p "VERDACCIO_ADMIN_TOKEN: " VERDACCIO_ADMIN_TOKEN
@@ -52,6 +50,10 @@ fi
 
 tmp_resp="$(mktemp)"
 trap 'rm -f "$tmp_resp"' EXIT
+
+extract_secret() {
+  python3 -c "import json,sys;print(json.load(sys.stdin)['secret'])" < "$tmp_resp"
+}
 
 for repo in "$@"; do
   pat_var="$(echo "$repo" | tr '[:lower:]-' '[:upper:]_')_PAT"
@@ -66,30 +68,46 @@ for repo in "$@"; do
   fi
 
   USERNAME="ci-${repo}"
-  PASSWORD="$(openssl rand -base64 32 | tr -d '/+=' | head -c 24)"
-  DATE="$(date -u +%Y-%m-%dT%H:%M:%S.000Z)"
+  DESCRIPTION="CI publisher for fazer-ai/${repo}"
 
   echo
-  echo ">>> fazer-ai/$repo"
-  echo "  PUT $REGISTRY/-/user/org.couchdb.user:$USERNAME"
+  echo ">>> fazer-ai/$repo (credential: $USERNAME)"
 
-  http_code=$(curl -sS -o "$tmp_resp" -w '%{http_code}' -X PUT \
+  http_code=$(curl -sS -o "$tmp_resp" -w '%{http_code}' \
+    -X POST "$REGISTRY/-/admin/credentials" \
     -H "Authorization: Bearer $VERDACCIO_ADMIN_TOKEN" \
     -H "Content-Type: application/json" \
-    -d "{\"name\":\"$USERNAME\",\"password\":\"$PASSWORD\",\"email\":\"$EMAIL\",\"type\":\"user\",\"roles\":[],\"date\":\"$DATE\"}" \
-    "$REGISTRY/-/user/org.couchdb.user:$USERNAME")
+    -d "{\"name\":\"$USERNAME\",\"description\":\"$DESCRIPTION\",\"is_admin\":false}")
 
-  if [ "$http_code" != "200" ] && [ "$http_code" != "201" ]; then
-    echo "  Verdaccio returned HTTP $http_code:" >&2
-    cat "$tmp_resp" >&2
-    echo >&2
-    echo "  skipping $repo" >&2
-    continue
-  fi
+  case "$http_code" in
+    201)
+      echo "  credential created"
+      secret="$(extract_secret)"
+      ;;
+    409)
+      echo "  credential exists, rotating secret"
+      http_code=$(curl -sS -o "$tmp_resp" -w '%{http_code}' \
+        -X PATCH "$REGISTRY/-/admin/credentials/$USERNAME" \
+        -H "Authorization: Bearer $VERDACCIO_ADMIN_TOKEN")
+      if [ "$http_code" != "200" ]; then
+        echo "  rotate failed: HTTP $http_code" >&2
+        cat "$tmp_resp" >&2; echo >&2
+        echo "  skipping $repo" >&2
+        continue
+      fi
+      secret="$(extract_secret)"
+      ;;
+    *)
+      echo "  Verdaccio returned HTTP $http_code:" >&2
+      cat "$tmp_resp" >&2; echo >&2
+      echo "  skipping $repo" >&2
+      continue
+      ;;
+  esac
 
-  echo "  user OK. Setting GitHub secrets..."
+  echo "  setting GitHub secrets"
   gh secret set NPM_REGISTRY_USER  --repo "fazer-ai/$repo" --body "$USERNAME"
-  gh secret set NPM_REGISTRY_TOKEN --repo "fazer-ai/$repo" --body "$PASSWORD"
+  gh secret set NPM_REGISTRY_TOKEN --repo "fazer-ai/$repo" --body "$secret"
   gh secret set SKILLS_REPO_PAT    --repo "fazer-ai/$repo" --body "$pat"
 
   echo "  done"

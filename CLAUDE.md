@@ -4,60 +4,71 @@ Operational notes for the `fazer-ai/skills` marketplace and the private
 Verdaccio at `https://npm.fazer.ai/`. Loaded into Claude Code's context
 when working in this repo.
 
-## Private npm registry (Verdaccio)
+## Private npm registry (Verdaccio + admin plugin)
 
 The marketplace gates plugin install via the `@fazer-ai-pro/*` scope on
-the private Verdaccio at `https://npm.fazer.ai/`. Each plugin repo
-publishes there as a dedicated CI user (`ci-<repo-name>`).
+the private Verdaccio at `https://npm.fazer.ai/`. Auth uses a custom
+Verdaccio plugin (`verdaccio-plugin/src/admin-routes.ts` in
+`fazer-ai/npm-registry`) that exposes `/-/admin/credentials` for
+issuing and rotating per-credential secrets. Each plugin repo publishes
+as a dedicated credential (`ci-<repo-name>`).
 
-### Create a publisher user (admin only)
+The admin token is set on the Verdaccio server (env var `ADMIN_TOKEN`);
+the CLI scripts here consume it via the `VERDACCIO_ADMIN_TOKEN` env var.
 
-Signup is closed on `npm.fazer.ai`. Use the CouchDB-style endpoint
-`PUT /-/user/org.couchdb.user:NAME` with a Bearer admin token.
-
-#### 1. Get an admin token
-
-```sh
-curl -fsS -X POST \
-  -H "Content-Type: application/json" \
-  -d '{"name":"ADMIN_USER","password":"ADMIN_PWD"}' \
-  https://npm.fazer.ai/-/v1/login
-# => {"token":"npm_..."}
-```
-
-Set the token in the shell:
-
-```sh
-export VERDACCIO_ADMIN_TOKEN="npm_..."
-```
-
-#### 2. Create the user
+### Create a publisher credential
 
 ```sh
 USERNAME="ci-fazer-ai-vps"
-PASSWORD="$(openssl rand -base64 32 | tr -d '/+=' | head -c 24)"
-EMAIL="ops@fazer.ai"
-DATE="$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)"
+DESCRIPTION="CI publisher for fazer-ai/fazer-ai-vps"
 
-curl -fsS -X PUT \
+curl -fsS -X POST "https://npm.fazer.ai/-/admin/credentials" \
   -H "Authorization: Bearer $VERDACCIO_ADMIN_TOKEN" \
   -H "Content-Type: application/json" \
-  -d "{\"name\":\"$USERNAME\",\"password\":\"$PASSWORD\",\"email\":\"$EMAIL\",\"type\":\"user\",\"roles\":[],\"date\":\"$DATE\"}" \
-  "https://npm.fazer.ai/-/user/org.couchdb.user:$USERNAME"
-
-echo
-echo "  user=$USERNAME"
-echo "  password=$PASSWORD"
+  -d "{\"name\":\"$USERNAME\",\"description\":\"$DESCRIPTION\",\"is_admin\":false}"
 ```
 
-The response is `{"ok":"user '<name>' created", "token":"..."}`. Save
-`$USERNAME` and `$PASSWORD` (not the returned token) — those are the
-values consumed by the publish workflow.
+Response on `201 Created`:
 
-#### 3. Rotate the password
+```json
+{
+  "id": "...",
+  "name": "ci-fazer-ai-vps",
+  "description": "CI publisher for fazer-ai/fazer-ai-vps",
+  "is_admin": false,
+  "enabled": true,
+  "created_at": "...",
+  "updated_at": "...",
+  "secret": "<24-byte base64url>"
+}
+```
 
-Repeat the same `PUT` with the same `USERNAME` and a new `PASSWORD`.
-Then update the GitHub secret on the plugin repo.
+The `secret` is only returned on creation — store immediately. Name
+validation: lowercase alphanumeric + hyphens, 1-64 chars. On `409
+Conflict`, rotate with PATCH (see below). Rate limit: 100 req / 5 min /
+IP.
+
+### Other credential operations
+
+```sh
+# Rotate secret (returns {"secret": "..."})
+curl -fsS -X PATCH "https://npm.fazer.ai/-/admin/credentials/$USERNAME" \
+  -H "Authorization: Bearer $VERDACCIO_ADMIN_TOKEN"
+
+# Disable / re-enable
+curl -fsS -X PUT "https://npm.fazer.ai/-/admin/credentials/$USERNAME" \
+  -H "Authorization: Bearer $VERDACCIO_ADMIN_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"enabled":false}'
+
+# Read (no secret in response)
+curl -fsS "https://npm.fazer.ai/-/admin/credentials/$USERNAME" \
+  -H "Authorization: Bearer $VERDACCIO_ADMIN_TOKEN"
+
+# Revoke
+curl -fsS -X DELETE "https://npm.fazer.ai/-/admin/credentials/$USERNAME" \
+  -H "Authorization: Bearer $VERDACCIO_ADMIN_TOKEN"
+```
 
 ## GitHub Actions secrets per plugin repo
 
