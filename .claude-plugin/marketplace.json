@@ -215,11 +215,11 @@
         "en": "Skills to operate AI VPS infrastructure: debugging, migration, backup, alerts, deployment, hardening, and observability.",
         "pt-BR": "Skills pra operar VPS de IA: debug, migração, backup, alertas, deploy, hardening e observabilidade."
       },
-      "version": "1.1.0",
+      "version": "1.2.0",
       "source": {
         "source": "npm",
         "package": "@fazer-ai-pro/fazer-ai-vps",
-        "version": "1.1.0",
+        "version": "1.2.0",
         "registry": "https://npm.fazer.ai/"
       },
       "category": "devops",
@@ -319,10 +319,10 @@
         },
         {
           "name": "backup-restore-coolify",
-          "description": "Configura backups automatizados pra VPS Coolify e roda drill de restore em VPS limpo pra validar a cadeia ponta a ponta.",
+          "description": "Configura backups automatizados pra VPS Coolify, roda drill de restore em VPS limpo pra validar a cadeia, ou restaura Coolify e serviços do zero a partir do S3 pra disaster recovery real.",
           "descriptions": {
-            "en": "Configure automated backups for a Coolify VPS and run a drill restore on a clean test VPS to validate the backup chain end-to-end.",
-            "pt-BR": "Configura backups automatizados pra VPS Coolify e roda drill de restore em VPS limpo pra validar a cadeia ponta a ponta."
+            "en": "Configure automated backups for a Coolify VPS, run a drill restore on a clean test VPS to validate the backup chain, or rebuild Coolify and services from S3 on a fresh VPS for actual disaster recovery.",
+            "pt-BR": "Configura backups automatizados pra VPS Coolify, roda drill de restore em VPS limpo pra validar a cadeia, ou restaura Coolify e serviços do zero a partir do S3 pra disaster recovery real."
           },
           "category": "devops",
           "tags": [
@@ -330,6 +330,7 @@
             "backup",
             "restore",
             "drill",
+            "disaster-recovery",
             "s3"
           ]
         },
