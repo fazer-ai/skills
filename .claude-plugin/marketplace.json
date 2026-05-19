@@ -377,11 +377,11 @@
         "en": "Skills to design, debug, and optimize AI agents: cost, model, prompt, simulation, and transcript debugging.",
         "pt-BR": "Skills pra desenhar, debugar e otimizar agentes de IA: custo, modelo, prompt, simulação e debug de transcript."
       },
-      "version": "1.0.0",
+      "version": "1.1.0",
       "source": {
         "source": "npm",
         "package": "@fazer-ai-pro/fazer-ai-agentes",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "registry": "https://npm.fazer.ai/"
       },
       "category": "ai",
@@ -446,22 +446,6 @@
             "persona",
             "qa"
           ]
-        },
-        {
-          "name": "avaliar-prompt",
-          "description": "Roda uma bateria de avaliações sobre um prompt: clareza, robustez a edge cases, consistência entre execuções e custo médio.",
-          "descriptions": {
-            "en": "Runs a battery of evaluations on a prompt: clarity, robustness to edge cases, consistency across runs, and average cost.",
-            "pt-BR": "Roda uma bateria de avaliações sobre um prompt: clareza, robustez a edge cases, consistência entre execuções e custo médio."
-          },
-          "category": "ai",
-          "tags": [
-            "prompt",
-            "eval",
-            "qualidade",
-            "agente",
-            "teste"
-          ]
         }
       ],
       "available_skills": [
@@ -495,6 +479,24 @@
             "orcamento",
             "llm",
             "cotacao"
+          ]
+        },
+        {
+          "name": "avaliar-prompt",
+          "description": "Audita o system prompt de um agente de IA em oito eixos de engenharia e propõe reescritas mínimas com ranking de severidade.",
+          "descriptions": {
+            "en": "Audit an AI agent system prompt across eight engineering axes and propose minimal-impact rewrites with severity ranking, covering structure, persona, tools, guardrails, model choice and cost.",
+            "pt-BR": "Audita o system prompt de um agente de IA (Claude/GPT/Gemini, qualquer SDK ou node n8n) em oito eixos de engenharia (estrutura, persona, tools, few-shot, guardrails, modelo, cache, retorno de tools) e propõe reescritas mínimas com ranking de severidade e estimativa de custo."
+          },
+          "category": "ai",
+          "tags": [
+            "prompt",
+            "audit",
+            "agente",
+            "llm",
+            "n8n",
+            "cache",
+            "guardrails"
           ]
         }
       ]
