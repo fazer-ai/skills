@@ -215,11 +215,11 @@
         "en": "Skills to operate AI VPS infrastructure: debugging, migration, backup, alerts, deployment, hardening, and observability.",
         "pt-BR": "Skills pra operar VPS de IA: debug, migração, backup, alertas, deploy, hardening e observabilidade."
       },
-      "version": "1.2.2",
+      "version": "1.3.0",
       "source": {
         "source": "npm",
         "package": "@fazer-ai-pro/fazer-ai-vps",
-        "version": "1.2.2",
+        "version": "1.3.0",
         "registry": "https://npm.fazer.ai/"
       },
       "category": "devops",
