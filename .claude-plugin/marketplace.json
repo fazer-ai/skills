@@ -64,11 +64,11 @@
         "en": "Skills for the commercial and operational cycle: custom Chatwoot funnel design, proposal, discovery, case study, call coach, support reporting, and video-based content generation.",
         "pt-BR": "Skills pro ciclo comercial e operacional: funil sob medida no Chatwoot, proposta, diagnóstico, case, coach de call, relatório de atendimento e geração de conteúdo a partir de vídeo."
       },
-      "version": "1.1.1",
+      "version": "1.2.0",
       "source": {
         "source": "npm",
         "package": "@fazer-ai-pro/fazer-ai-negocio",
-        "version": "1.1.1",
+        "version": "1.2.0",
         "registry": "https://npm.fazer.ai/"
       },
       "category": "business",
@@ -102,9 +102,7 @@
             "comercial",
             "vendas"
           ]
-        }
-      ],
-      "coming_soon": [
+        },
         {
           "name": "gerar-proposta-comercial",
           "description": "Proposta comercial em MD/PDF: escopo, prazo, preço, premissas e exclusões. Treinada com propostas reais da comunidade.",
@@ -121,6 +119,26 @@
             "pdf"
           ]
         },
+        {
+          "name": "gerar-fluxograma-processo",
+          "description": "Gera dois fluxogramas DrawIO a partir da transcrição da call de diagnóstico: o processo atual do cliente com os gargalos e o processo com a sua automação com o valor destacado.",
+          "descriptions": {
+            "en": "Generates two DrawIO flowcharts from the discovery-call transcript: the client's current process with its bottlenecks, and the automated process with the value highlighted.",
+            "pt-BR": "Gera dois fluxogramas DrawIO a partir da transcrição da call de diagnóstico: o processo atual do cliente com os gargalos e o processo com a sua automação com o valor destacado."
+          },
+          "category": "commercial",
+          "tags": [
+            "fluxograma",
+            "drawio",
+            "diagnostico",
+            "proposta",
+            "comercial",
+            "vendas",
+            "processo"
+          ]
+        }
+      ],
+      "coming_soon": [
         {
           "name": "preparar-diagnostico-cliente",
           "description": "Pesquisa de cliente e 7 perguntas-chave pra reunião de diagnóstico. Recebe nome, site, Instagram e histórico de mensagens.",
