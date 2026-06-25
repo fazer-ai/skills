@@ -526,11 +526,11 @@
         "en": "Skills for creating and maintaining Claude Code skills: security auditing, SKILL.md generation following the community standard, automated review loops.",
         "pt-BR": "Skills pra criar e manter skills do Claude Code: auditoria de segurança, geração de SKILL.md no padrão da comunidade, loops de review automatizado."
       },
-      "version": "1.0.0",
+      "version": "1.1.0",
       "source": {
         "source": "npm",
         "package": "@fazer-ai-pro/fazer-ai-skills-dev",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "registry": "https://npm.fazer.ai/"
       },
       "category": "development",
@@ -610,6 +610,23 @@
             "seguranca",
             "hook",
             "claude-code"
+          ]
+        },
+        {
+          "name": "instalar-statusline",
+          "description": "Installs the fazer.ai status line for Claude Code: a multi-line bar with context window, session cost, model/effort, git, and token breakdown. Copies the script to ~/.claude and wires the statusLine block in settings.json, cross-platform (Windows/macOS/Linux).",
+          "descriptions": {
+            "en": "Installs the fazer.ai status line for Claude Code: a multi-line bar with context window, session cost, model/effort, git, and token breakdown. Copies the script to ~/.claude and wires the statusLine block in settings.json, cross-platform (Windows/macOS/Linux).",
+            "pt-BR": "Instala a statusline da fazer.ai no Claude Code: barra multi-linha com janela de contexto, custo da sessão, modelo/effort, git e tokens. Copia o script pra ~/.claude e configura o bloco statusLine no settings.json, cross-platform (Windows/macOS/Linux)."
+          },
+          "category": "productivity",
+          "tags": [
+            "statusline",
+            "claude-code",
+            "ui",
+            "dx",
+            "cross-platform",
+            "python"
           ]
         }
       ]
