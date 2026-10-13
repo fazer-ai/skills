@@ -521,10 +521,10 @@
     },
     {
       "name": "fazer-ai-skills-dev",
-      "description": "Skills pra criar e manter skills do Claude Code: auditoria de segurança, geração de SKILL.md no padrão da comunidade, loops de review automatizado.",
+      "description": "Skills pra criar e manter skills do Claude Code: auditoria de segurança e geração de SKILL.md no padrão da comunidade.",
       "descriptions": {
-        "en": "Skills for creating and maintaining Claude Code skills: security auditing, SKILL.md generation following the community standard, automated review loops.",
-        "pt-BR": "Skills pra criar e manter skills do Claude Code: auditoria de segurança, geração de SKILL.md no padrão da comunidade, loops de review automatizado."
+        "en": "Skills for creating and maintaining Claude Code skills: security auditing and SKILL.md generation following the community standard.",
+        "pt-BR": "Skills pra criar e manter skills do Claude Code: auditoria de segurança e geração de SKILL.md no padrão da comunidade."
       },
       "version": "1.1.0",
       "source": {
@@ -541,8 +541,7 @@
         "auditoria",
         "meta",
         "seguranca",
-        "template",
-        "coderabbit"
+        "template"
       ],
       "coming_soon": [
         {
@@ -559,23 +558,6 @@
             "scaffold",
             "claude-code",
             "comunidade"
-          ]
-        },
-        {
-          "name": "review-loop",
-          "description": "Loop automatizado de review por bot (CodeRabbit, Copilot): pede review em PR, monitora feedback, aplica fixes e repete até zerar comentários.",
-          "descriptions": {
-            "en": "Automated bot review loop (CodeRabbit, Copilot): requests review on a PR, monitors feedback, applies fixes, and repeats until clean.",
-            "pt-BR": "Loop automatizado de review por bot (CodeRabbit, Copilot): pede review em PR, monitora feedback, aplica fixes e repete até zerar comentários."
-          },
-          "category": "development",
-          "tags": [
-            "review",
-            "ci",
-            "pr",
-            "coderabbit",
-            "copilot",
-            "automacao"
           ]
         },
         {
@@ -627,6 +609,94 @@
             "dx",
             "cross-platform",
             "python"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "fazer-ai-claude-code",
+      "description": "Setup de Claude Code além do básico: cor da janela por estado da sessão, revisão pelo Codex, review loop em PR e uma rodada de backlog com gate de merge por script.",
+      "descriptions": {
+        "en": "Claude Code beyond the basics: window colour by session state, Codex review, a PR review loop and a backlog round with a script-decided merge gate.",
+        "pt-BR": "Setup de Claude Code além do básico: cor da janela por estado da sessão, revisão pelo Codex, review loop em PR e uma rodada de backlog com gate de merge por script."
+      },
+      "version": "0.1.0",
+      "source": {
+        "source": "npm",
+        "package": "@fazer-ai-pro/fazer-ai-claude-code",
+        "version": "0.1.0",
+        "registry": "https://npm.fazer.ai/"
+      },
+      "category": "development",
+      "tags": [
+        "claude-code",
+        "hooks",
+        "codex",
+        "review",
+        "github",
+        "cross-platform"
+      ],
+      "available_skills": [
+        {
+          "name": "beacon",
+          "description": "Hook automático que muda a cor de fundo do terminal conforme o estado da sessão: trabalhando, rodando em segundo plano ou esperando você.",
+          "descriptions": {
+            "en": "Automatic hook that changes the terminal background colour with the session state: working, running in the background or waiting for you.",
+            "pt-BR": "Hook automático que muda a cor de fundo do terminal conforme o estado da sessão: trabalhando, rodando em segundo plano ou esperando você."
+          },
+          "category": "productivity",
+          "tags": [
+            "hook",
+            "terminal",
+            "claude-code",
+            "windows",
+            "macos",
+            "linux"
+          ]
+        },
+        {
+          "name": "revisar-com-codex",
+          "description": "Revisa as mudanças do repositório com o Codex, corrige o que ele achar e repete até ficar limpo, sem depender de GitHub.",
+          "descriptions": {
+            "en": "Reviews the repository changes with Codex, fixes what it finds and repeats until clean, with no GitHub dependency.",
+            "pt-BR": "Revisa as mudanças do repositório com o Codex, corrige o que ele achar e repete até ficar limpo, sem depender de GitHub."
+          },
+          "category": "development",
+          "tags": [
+            "review",
+            "codex",
+            "claude-code"
+          ]
+        },
+        {
+          "name": "review-loop",
+          "description": "Ciclo de revisão numa pull request do GitHub: o Codex revisa, os achados viram comentários na PR, o Claude corrige e pede nova revisão até ficar limpo.",
+          "descriptions": {
+            "en": "Review cycle on a GitHub pull request: Codex reviews, findings become PR comments, Claude fixes and asks for another review until clean.",
+            "pt-BR": "Ciclo de revisão numa pull request do GitHub: o Codex revisa, os achados viram comentários na PR, o Claude corrige e pede nova revisão até ficar limpo."
+          },
+          "category": "development",
+          "tags": [
+            "review",
+            "codex",
+            "github",
+            "pr"
+          ]
+        },
+        {
+          "name": "ship",
+          "description": "Pega a próxima issue marcada para o Claude, corrige com teste, abre a PR, passa pelo review loop e deixa um script decidir se ela mergeia sozinha ou espera uma pessoa.",
+          "descriptions": {
+            "en": "Takes the next issue labelled for Claude, fixes it with a test, opens the PR, runs the review loop and lets a script decide whether it merges on its own or waits for a person.",
+            "pt-BR": "Pega a próxima issue marcada para o Claude, corrige com teste, abre a PR, passa pelo review loop e deixa um script decidir se ela mergeia sozinha ou espera uma pessoa."
+          },
+          "category": "development",
+          "tags": [
+            "backlog",
+            "github",
+            "issues",
+            "merge",
+            "automacao"
           ]
         }
       ]
