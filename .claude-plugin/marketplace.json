@@ -395,11 +395,11 @@
         "en": "Skills to design, debug, and optimize AI agents: cost, model, prompt, simulation, and transcript debugging.",
         "pt-BR": "Skills pra desenhar, debugar e otimizar agentes de IA: custo, modelo, prompt, simulação e debug de transcript."
       },
-      "version": "1.1.0",
+      "version": "1.2.0",
       "source": {
         "source": "npm",
         "package": "@fazer-ai-pro/fazer-ai-agentes",
-        "version": "1.1.0",
+        "version": "1.2.0",
         "registry": "https://npm.fazer.ai/"
       },
       "category": "ai",
@@ -515,6 +515,24 @@
             "n8n",
             "cache",
             "guardrails"
+          ]
+        },
+        {
+          "name": "agents-optimize",
+          "description": "Otimiza um agente do fazer.ai agents contra uma bateria de mais de 100 conversas realistas (histórico real do Chatwoot mais sintéticas), iterando prompt, code tools, base e modelo até ficar comprovadamente melhor e mais barato.",
+          "descriptions": {
+            "en": "Optimize a fazer.ai agents agent against a battery of 100+ realistic conversations (real Chatwoot history plus synthetic ones), iterating prompt, code tools, knowledge base and model until it is measurably better and cheaper.",
+            "pt-BR": "Otimiza um agente do fazer.ai agents contra uma bateria de mais de 100 conversas realistas (histórico real do Chatwoot mais sintéticas), iterando prompt, code tools, base e modelo até ficar comprovadamente melhor e mais barato."
+          },
+          "category": "ai",
+          "tags": [
+            "agente",
+            "otimizacao",
+            "bateria",
+            "teste",
+            "custo",
+            "modelo",
+            "chatwoot"
           ]
         }
       ]
