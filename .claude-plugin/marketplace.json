@@ -395,11 +395,11 @@
         "en": "Skills to design, debug, and optimize AI agents: cost, model, prompt, simulation, and transcript debugging.",
         "pt-BR": "Skills pra desenhar, debugar e otimizar agentes de IA: custo, modelo, prompt, simulação e debug de transcript."
       },
-      "version": "1.2.1",
+      "version": "1.3.0",
       "source": {
         "source": "npm",
         "package": "@fazer-ai-pro/fazer-ai-agentes",
-        "version": "1.2.1",
+        "version": "1.3.0",
         "registry": "https://npm.fazer.ai/"
       },
       "category": "ai",
