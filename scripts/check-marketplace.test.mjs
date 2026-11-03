@@ -77,6 +77,11 @@ test("a source that is not an npm object fails", () => {
     });
     expectProblem(run({ marketplace }), `plugin ${name}`, "source");
   }
+  // a github source that would pass every npm field check is still refused for its kind
+  const gh = planted((p) => {
+    p.source = { ...p.source, source: "github" };
+  });
+  expectProblem(run({ marketplace: gh.marketplace }), `plugin ${gh.name}`, "`source.source` must be \"npm\"");
   const { marketplace, name } = planted((p) => {
     delete p.source;
   });
