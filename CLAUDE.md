@@ -123,3 +123,5 @@ auto-bump PR refresh it on the first real release.
 
 See [`docs/plugin-publish-workflow.md`](docs/plugin-publish-workflow.md)
 for the full schema (`skills[]`, `coming_soon[]`).
+
+The `Check` workflow validates the file on every PR and push to `main`. Run it locally with `node scripts/check-marketplace.mjs` (and `node --test 'scripts/*.test.mjs'` for the checker's own tests).
