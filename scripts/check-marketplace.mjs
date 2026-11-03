@@ -16,8 +16,8 @@ const NAME = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const SEMVER = /^\d+\.\d+\.\d+$/;
 const REGISTRY = "https://npm.fazer.ai/";
 const SCOPE = "@fazer-ai-pro/";
-// the plugin source kinds Claude Code's marketplace accepts; this catalog only uses npm today
-const SOURCE_KINDS = ["npm", "github", "url", "git-subdir"];
+// NOTE: access to every plugin in this catalog is gated by the private npm registry, so npm is the only
+// source kind that makes sense here; a github or url source would hand the plugin out to anyone.
 
 const problems = [];
 const report = (where, msg) => problems.push(`${where}: ${msg}`);
@@ -75,9 +75,9 @@ function checkPlugin(plugin, i, names, listed) {
   const src = plugin.source;
   if (!isObj(src)) {
     report(where, `\`source\` must be an object (got ${JSON.stringify(src)})`);
-  } else if (!SOURCE_KINDS.includes(src.source)) {
-    report(where, `\`source.source\` must be one of ${SOURCE_KINDS.join(", ")} (got ${JSON.stringify(src.source)})`);
-  } else if (src.source === "npm") {
+  } else if (src.source !== "npm") {
+    report(where, `\`source.source\` must be "npm" (got ${JSON.stringify(src.source)})`);
+  } else {
     if (typeof src.package !== "string" || !src.package.startsWith(SCOPE)) {
       report(where, `\`source.package\` must be a ${SCOPE} package (got ${JSON.stringify(src.package)})`);
     }

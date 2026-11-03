@@ -70,8 +70,8 @@ test("npm source outside the private scope or registry fails", () => {
   expectProblem(run({ marketplace: x.marketplace }), `plugin ${x.name}`, "source.registry");
 });
 
-test("a source that is not an object, or names an unknown kind, fails", () => {
-  for (const bad of [null, {}, { source: "nmp", package: "@fazer-ai-pro/x" }]) {
+test("a source that is not an npm object fails", () => {
+  for (const bad of [null, {}, { source: "nmp", package: "@fazer-ai-pro/x" }, { source: "github", repo: "fazer-ai/x" }]) {
     const { marketplace, name } = planted((p) => {
       p.source = bad;
     });
