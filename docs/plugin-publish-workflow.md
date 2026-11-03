@@ -179,6 +179,8 @@ A full, copy-pasteable workflow lives at
 [`templates/publish.yml`](templates/publish.yml). Drop it into
 `.github/workflows/publish.yml` of the plugin repo.
 
+Copy [`templates/merge-bump-pr.sh`](templates/merge-bump-pr.sh) to `.github/scripts/merge-bump-pr.sh` too, executable: the last step calls it to merge the bump PR. This repo has no branch protection, so GitHub refuses auto-merge on a bump PR that is already clean; the script then merges it directly, and fails the job when the merge really fails.
+
 It assumes the standard fazer.ai layout:
 
 - `package.json`, `.claude-plugin/plugin.json`, and
