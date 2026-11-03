@@ -91,6 +91,8 @@ for the plugin-repo checklist, the `descriptions` i18n convention, and
 the GitHub Actions template that opens an auto-bump PR against this
 repo on each release.
 
+Every PR runs the `Check` workflow on `.claude-plugin/marketplace.json`. To run it locally: `node scripts/check-marketplace.mjs`.
+
 ## License
 
 This repository contains only the marketplace metadata and documentation
