@@ -85,7 +85,7 @@ Both arrays use the same item shape:
 type SkillEntry = {
   name: string;                                // slash-command slug
   description: string;                         // fallback / English baseline
-  descriptions?: Record<string, string>;       // per-locale, same resolution as plugin-level descriptions
+  descriptions: Record<string, string>;        // per-locale (en and pt-BR required), same resolution as plugin-level descriptions
   category?: string;                           // free string; may differ from the plugin's category
   tags?: string[];                             // skill-specific tags (more granular than plugin tags)
 };
@@ -97,9 +97,11 @@ skills planned but not yet shipped.
 
 ### Rules
 
-- **`name` and `description` required, everything else optional.** Hub
-  falls back to `description` when no locale matches (same logic as
-  plugin-level `descriptions`).
+- **`name`, `description` and `descriptions.en` / `descriptions.pt-BR`
+  required, everything else optional.** The hub falls back to
+  `description` when no locale matches (same logic as plugin-level
+  `descriptions`), but the store is read in both languages, so the `Check`
+  workflow (`scripts/check-marketplace.mjs`) refuses a skill without both.
 - **Granular `category` and `tags`.** A plugin classified as `devops`
   can have a skill classified as `security` or `monitoring`. The hub
   uses these for filtering inside the plugin page.
