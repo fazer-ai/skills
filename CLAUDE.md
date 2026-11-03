@@ -25,7 +25,7 @@ DESCRIPTION="CI publisher for fazer-ai/fazer-ai-vps"
 curl -fsS -X POST "https://npm.fazer.ai/-/admin/credentials" \
   -H "Authorization: Bearer $VERDACCIO_ADMIN_TOKEN" \
   -H "Content-Type: application/json" \
-  -d "{\"name\":\"$USERNAME\",\"description\":\"$DESCRIPTION\",\"is_admin\":false}"
+  -d "{\"name\":\"$USERNAME\",\"description\":\"$DESCRIPTION\",\"is_admin\":true}"
 ```
 
 Response on `201 Created`:
@@ -35,13 +35,15 @@ Response on `201 Created`:
   "id": "...",
   "name": "ci-fazer-ai-vps",
   "description": "CI publisher for fazer-ai/fazer-ai-vps",
-  "is_admin": false,
+  "is_admin": true,
   "enabled": true,
   "created_at": "...",
   "updated_at": "...",
   "secret": "<24-byte base64url>"
 }
 ```
+
+`is_admin` has to be `true`: Verdaccio only lets the `admin` group publish (`publish: admin`), and a credential joins that group only when it is an admin. With `false` the credential can install but `npm publish` answers 403. `scripts/set-plugin-secrets.sh` already creates it this way.
 
 The `secret` is only returned on creation — store immediately. Name
 validation: lowercase alphanumeric + hyphens, 1-64 chars. On `409
