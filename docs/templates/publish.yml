@@ -133,8 +133,8 @@ jobs:
             --base main \
             --head "$branch"
 
-          # Enable auto-merge so concurrent bump PRs don't pile up and
-          # require manual merging. Skips silently if the repo doesn't
-          # allow auto-merge.
-          gh pr merge "$branch" --repo fazer-ai/skills --auto --squash --delete-branch \
-            || echo "::warning::could not enable auto-merge; merge ${branch} manually"
+          # Merge the bump PR so they don't pile up: auto-merge when the repo has
+          # something to wait for, a direct squash merge when the PR is already
+          # clean, and a failed job when neither works. Copy
+          # docs/templates/merge-bump-pr.sh to .github/scripts/ in the plugin repo.
+          "${GITHUB_WORKSPACE}/.github/scripts/merge-bump-pr.sh" fazer-ai/skills "$branch"
