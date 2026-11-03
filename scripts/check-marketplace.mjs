@@ -16,6 +16,8 @@ const NAME = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const SEMVER = /^\d+\.\d+\.\d+$/;
 const REGISTRY = "https://npm.fazer.ai/";
 const SCOPE = "@fazer-ai-pro/";
+// the plugin source kinds Claude Code's marketplace accepts; this catalog only uses npm today
+const SOURCE_KINDS = ["npm", "github", "url", "git-subdir"];
 
 const problems = [];
 const report = (where, msg) => problems.push(`${where}: ${msg}`);
@@ -71,7 +73,11 @@ function checkPlugin(plugin, i, names, listed) {
     report(where, `\`version\` must be X.Y.Z semver (got ${JSON.stringify(plugin.version)})`);
   }
   const src = plugin.source;
-  if (isObj(src) && src.source === "npm") {
+  if (!isObj(src)) {
+    report(where, `\`source\` must be an object (got ${JSON.stringify(src)})`);
+  } else if (!SOURCE_KINDS.includes(src.source)) {
+    report(where, `\`source.source\` must be one of ${SOURCE_KINDS.join(", ")} (got ${JSON.stringify(src.source)})`);
+  } else if (src.source === "npm") {
     if (typeof src.package !== "string" || !src.package.startsWith(SCOPE)) {
       report(where, `\`source.package\` must be a ${SCOPE} package (got ${JSON.stringify(src.package)})`);
     }
@@ -79,8 +85,6 @@ function checkPlugin(plugin, i, names, listed) {
     if (src.version !== plugin.version) {
       report(where, `\`source.version\` (${JSON.stringify(src.version)}) differs from \`version\` (${JSON.stringify(plugin.version)})`);
     }
-  } else if (src === undefined) {
-    report(where, "`source` is missing");
   }
   if (!nonEmpty(plugin.category)) report(where, "`category` is missing or empty");
   if (!Array.isArray(plugin.tags) || !plugin.tags.every((t) => typeof t === "string")) {

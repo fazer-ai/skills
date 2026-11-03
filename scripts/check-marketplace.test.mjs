@@ -70,6 +70,19 @@ test("npm source outside the private scope or registry fails", () => {
   expectProblem(run({ marketplace: x.marketplace }), `plugin ${x.name}`, "source.registry");
 });
 
+test("a source that is not an object, or names an unknown kind, fails", () => {
+  for (const bad of [null, {}, { source: "nmp", package: "@fazer-ai-pro/x" }]) {
+    const { marketplace, name } = planted((p) => {
+      p.source = bad;
+    });
+    expectProblem(run({ marketplace }), `plugin ${name}`, "source");
+  }
+  const { marketplace, name } = planted((p) => {
+    delete p.source;
+  });
+  expectProblem(run({ marketplace }), `plugin ${name}`, "`source` must be an object");
+});
+
 test("version that is not X.Y.Z fails", () => {
   const { marketplace, name } = planted((p) => {
     p.version = "1.2";
