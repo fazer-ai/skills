@@ -791,6 +791,47 @@
           ]
         }
       ]
+    },
+    {
+      "name": "fazer-ai-navegador",
+      "description": "Dá ao Claude Code um navegador controlado pelo Playwright, invisível ou em janela, com login guardado só quando você pede e regras de segurança para usar em sistemas sem API.",
+      "descriptions": {
+        "en": "Gives Claude Code a Playwright-driven browser, headless or windowed, with logins kept only when you ask and safety rules for working with systems that have no API.",
+        "pt-BR": "Dá ao Claude Code um navegador controlado pelo Playwright, invisível ou em janela, com login guardado só quando você pede e regras de segurança para usar em sistemas sem API."
+      },
+      "version": "0.1.0",
+      "source": {
+        "source": "npm",
+        "package": "@fazer-ai-pro/fazer-ai-navegador",
+        "version": "0.1.0",
+        "registry": "https://npm.fazer.ai/"
+      },
+      "category": "productivity",
+      "tags": [
+        "playwright",
+        "navegador",
+        "mcp",
+        "automacao",
+        "seguranca",
+        "cross-platform"
+      ],
+      "available_skills": [
+        {
+          "name": "navegador",
+          "description": "Navega e opera sites pelo Playwright com supervisão: escolhe entre navegador invisível e janela, guarda login sob pedido, fecha o navegador ao terminar e para antes de enviar, comprar, apagar ou logar.",
+          "descriptions": {
+            "en": "Browses and operates websites through Playwright under supervision: picks headless or windowed, keeps a login on request, closes the browser when done and stops before submitting, buying, deleting or logging in.",
+            "pt-BR": "Navega e opera sites pelo Playwright com supervisão: escolhe entre navegador invisível e janela, guarda login sob pedido, fecha o navegador ao terminar e para antes de enviar, comprar, apagar ou logar."
+          },
+          "category": "productivity",
+          "tags": [
+            "playwright",
+            "navegador",
+            "login",
+            "seguranca"
+          ]
+        }
+      ]
     }
   ]
 }
