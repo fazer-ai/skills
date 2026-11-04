@@ -59,7 +59,10 @@ jobs:
         run: npm publish
 
       # Requires SKILLS_REPO_PAT: a PAT (classic `repo` scope, or fine-grained
-      # with Contents: write + Pull requests: write on fazer-ai/skills).
+      # with Contents: write + Pull requests: write on fazer-ai/skills). The
+      # merge step also reads the PR's checks: fazer-ai/skills is public, so any
+      # token can; if it ever goes private, a fine-grained token also needs
+      # Checks: read and Commit statuses: read.
       - name: Open PR in fazer-ai/skills
         env:
           GH_TOKEN: ${{ secrets.SKILLS_REPO_PAT }}
