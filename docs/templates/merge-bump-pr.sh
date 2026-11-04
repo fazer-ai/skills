@@ -56,23 +56,37 @@ slept=0
 while :; do
   checks=$(gh pr checks "$branch" --repo "$repo" --json bucket --jq '[.[].bucket] | join(" ")' 2>&1)
   rc=$?
-  if [ "$rc" -ne 0 ] && [[ $checks != *"no checks reported"* ]]; then
+  # Decided on the buckets printed, never on the exit code alone: gh 2.95
+  # exits 0 with --json whatever the buckets, and a gh that exits 8 for a
+  # pending check (as it does without --json) prints the same list.
+  lower=$(printf '%s' "$checks" | tr '[:upper:]' '[:lower:]')
+  if [[ $lower == *"no checks reported"* ]] || { [ "$rc" -eq 0 ] && [ -z "$checks" ]; }; then
+    state=none
+  elif [[ " $checks " == *" fail "* || " $checks " == *" cancel "* ]]; then
+    state=failed
+  elif [[ " $checks " == *" pending "* ]] && { [ "$rc" -eq 0 ] || [ "$rc" -eq 8 ]; }; then
+    state=pending
+  elif [ "$rc" -eq 0 ] && [[ $checks =~ ^(pass|skipping)( (pass|skipping))*$ ]]; then
+    state=green
+  else
     printf '%s\n' "$checks" >&2
     echo "::error::could not read the checks of ${repo} ${branch}; the PR is still open"
     exit 1
-  elif [ "$rc" -ne 0 ] || [ -z "$checks" ]; then
-    if [ "$slept" -ge "$grace_waits" ]; then
-      echo "no checks on ${branch}"
-      break
-    fi
-  elif [[ " $checks " == *" fail "* || " $checks " == *" cancel "* ]]; then
+  fi
+  if [ "$state" = failed ]; then
     echo "checks: $checks" >&2
     echo "::error::a check failed or was cancelled on ${repo} ${branch}; the PR is still open"
     exit 1
-  elif [[ " $checks " != *" pending "* ]] && [ "$slept" -ge "$grace_waits" ]; then
-    # Green only counts after the grace period too: a check that passed early
-    # can hide another workflow that has not registered its check yet.
-    echo "checks green on ${branch} ($checks)"
+  fi
+  # Neither "no checks" nor "all green" counts before the grace period: a
+  # check that passed early can hide another workflow that has not
+  # registered its check yet.
+  if [ "$state" != pending ] && [ "$slept" -ge "$grace_waits" ]; then
+    if [ "$state" = none ]; then
+      echo "no checks on ${branch}"
+    else
+      echo "checks green on ${branch} ($checks)"
+    fi
     break
   fi
   if [ "$slept" -ge "$max_waits" ]; then
