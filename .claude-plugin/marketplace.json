@@ -743,11 +743,11 @@
         "en": "Creates systems from the fazer.ai fullstack template in a private repository and brings in template updates by merge.",
         "pt-BR": "Cria sistemas a partir do template fazer.ai fullstack, em repositório privado, e traz as atualizações do template por merge."
       },
-      "version": "0.1.0",
+      "version": "0.2.0",
       "source": {
         "source": "npm",
         "package": "@fazer-ai-pro/fazer-ai-fullstack",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "registry": "https://npm.fazer.ai/"
       },
       "category": "development",
