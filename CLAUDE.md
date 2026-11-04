@@ -114,7 +114,7 @@ into each plugin repo's `.github/workflows/`) does on release:
 If step 4 fails with 403, the PAT is missing **Contents: Write** — see
 `SKILLS_REPO_PAT` above.
 
-Step 4 ends by merging the bump PR through `.github/scripts/merge-bump-pr.sh` (template in `docs/templates/merge-bump-pr.sh`). A PR held by branch protection gets auto-merge and the protection decides. Otherwise the script first waits for the PR's checks, required or not, because `gh pr merge --auto` on a PR GitHub calls clean merges it at once with a check still queued: a failing or cancelled check, or checks still running after 15 minutes, fail the job, and a PR with no check after a 30 s grace period goes on. Then it merges, directly when GitHub refuses auto-merge on a clean or unstable PR. A bump PR left open after a green publish run means the plugin still has an old copy of the script.
+Step 4 ends by merging the bump PR through `.github/scripts/merge-bump-pr.sh` (template in `docs/templates/merge-bump-pr.sh`). A PR held by branch protection gets auto-merge and the protection decides. Otherwise the script first waits for the PR's checks, required or not, because `gh pr merge --auto` on a PR GitHub calls clean merges it at once with a check still queued: a failing or cancelled check, or checks still running after 15 minutes, fail the job, and neither "all green" nor "no checks" counts before a 30 s grace period, so a check that registers late is still seen. Then it merges, directly when GitHub refuses auto-merge on a clean or unstable PR. A bump PR left open after a green publish run means the plugin still has an old copy of the script.
 
 ## Plugin entry in central marketplace
 
