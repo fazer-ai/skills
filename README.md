@@ -16,6 +16,7 @@ fazer.ai subscription.
 | `fazer-ai-agentes` | Skills to design, debug, and optimize AI agents: cost, model, prompt, simulation, and transcript debugging. |
 | `fazer-ai-skills-dev` | Skills for creating and maintaining Claude Code skills: security auditing and SKILL.md generation following the community standard. |
 | `fazer-ai-claude-code` | Claude Code beyond the basics: window colour by session state, Codex review, a PR review loop and a backlog round with a script-decided merge gate. |
+| `fazer-ai-fullstack` | Creates systems from the fazer.ai fullstack template in a private repository and brings in template updates by merge. |
 
 ## Getting started
 

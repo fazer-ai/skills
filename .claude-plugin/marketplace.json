@@ -719,6 +719,62 @@
           ]
         }
       ]
+    },
+    {
+      "name": "fazer-ai-fullstack",
+      "description": "Cria sistemas a partir do template fazer.ai fullstack, em repositório privado, e traz as atualizações do template por merge.",
+      "descriptions": {
+        "en": "Creates systems from the fazer.ai fullstack template in a private repository and brings in template updates by merge.",
+        "pt-BR": "Cria sistemas a partir do template fazer.ai fullstack, em repositório privado, e traz as atualizações do template por merge."
+      },
+      "version": "0.1.0",
+      "source": {
+        "source": "npm",
+        "package": "@fazer-ai-pro/fazer-ai-fullstack",
+        "version": "0.1.0",
+        "registry": "https://npm.fazer.ai/"
+      },
+      "category": "development",
+      "tags": [
+        "fullstack",
+        "template",
+        "bun",
+        "react",
+        "postgres",
+        "github"
+      ],
+      "available_skills": [
+        {
+          "name": "criar-projeto",
+          "description": "Cria o projeto a partir do template fazer.ai fullstack: repositório privado no seu GitHub, banco local no ar e o link do primeiro admin.",
+          "descriptions": {
+            "en": "Creates the project from the fazer.ai fullstack template: a private repository on your GitHub, the local database running and the first admin link.",
+            "pt-BR": "Cria o projeto a partir do template fazer.ai fullstack: repositório privado no seu GitHub, banco local no ar e o link do primeiro admin."
+          },
+          "category": "development",
+          "tags": [
+            "template",
+            "github",
+            "bun",
+            "postgres"
+          ]
+        },
+        {
+          "name": "atualizar-template",
+          "description": "Traz as atualizações do template por merge numa branch própria e abre a PR, mantendo de fora o que o projeto descartou.",
+          "descriptions": {
+            "en": "Brings in template updates by merge on a dedicated branch and opens the PR, keeping out what the project dropped.",
+            "pt-BR": "Traz as atualizações do template por merge numa branch própria e abre a PR, mantendo de fora o que o projeto descartou."
+          },
+          "category": "development",
+          "tags": [
+            "template",
+            "git",
+            "merge",
+            "atualizacao"
+          ]
+        }
+      ]
     }
   ]
 }
