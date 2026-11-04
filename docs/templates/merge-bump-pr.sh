@@ -11,8 +11,8 @@
 # --auto` on a PR GitHub already calls clean merges it right away, even with a
 # check still queued (measured on gh 2.95), so asking for the merge first
 # would skip the check. Right after the PR opens its
-# checks may not be registered yet, so "no checks" only counts after a grace
-# period. A failing check, or checks still running at the timeout, fail the
+# checks may not be registered yet, so neither "no checks" nor "all green"
+# counts before a grace period. A failing check, or checks still running at the timeout, fail the
 # job and leave the PR open.
 #
 # Then it asks for auto-merge, so a repo with branch protection still makes
@@ -69,7 +69,9 @@ while :; do
     echo "checks: $checks" >&2
     echo "::error::a check failed or was cancelled on ${repo} ${branch}; the PR is still open"
     exit 1
-  elif [[ " $checks " != *" pending "* ]]; then
+  elif [[ " $checks " != *" pending "* ]] && [ "$slept" -ge "$grace_waits" ]; then
+    # Green only counts after the grace period too: a check that passed early
+    # can hide another workflow that has not registered its check yet.
     echo "checks green on ${branch} ($checks)"
     break
   fi
