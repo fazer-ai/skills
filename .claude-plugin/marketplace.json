@@ -639,11 +639,11 @@
         "en": "Claude Code beyond the basics: window colour by session state, Codex review, a PR review loop and a backlog round with a script-decided merge gate.",
         "pt-BR": "Setup de Claude Code além do básico: cor da janela por estado da sessão, revisão pelo Codex, review loop em PR e uma rodada de backlog com gate de merge por script."
       },
-      "version": "0.1.0",
+      "version": "0.2.0",
       "source": {
         "source": "npm",
         "package": "@fazer-ai-pro/fazer-ai-claude-code",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "registry": "https://npm.fazer.ai/"
       },
       "category": "development",
@@ -716,6 +716,22 @@
             "issues",
             "merge",
             "automacao"
+          ]
+        },
+        {
+          "name": "merge-deps",
+          "description": "Mergeia as PRs do Dependabot uma por vez e só com a CI verde, respeitando a janela de espera do Dependabot, com exceção para correção de falha crítica de segurança, e pede rebase quando há conflito.",
+          "descriptions": {
+            "en": "Merges Dependabot PRs one at a time and only with green CI, honouring Dependabot's waiting window, with an exception for critical security fixes, and asks for a rebase on conflicts.",
+            "pt-BR": "Mergeia as PRs do Dependabot uma por vez e só com a CI verde, respeitando a janela de espera do Dependabot, com exceção para correção de falha crítica de segurança, e pede rebase quando há conflito."
+          },
+          "category": "development",
+          "tags": [
+            "dependabot",
+            "dependencias",
+            "github",
+            "merge",
+            "seguranca"
           ]
         }
       ]
