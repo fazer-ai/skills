@@ -179,7 +179,7 @@ A full, copy-pasteable workflow lives at
 [`templates/publish.yml`](templates/publish.yml). Drop it into
 `.github/workflows/publish.yml` of the plugin repo.
 
-Copy [`templates/merge-bump-pr.sh`](templates/merge-bump-pr.sh) to `.github/scripts/merge-bump-pr.sh` too, executable: the last step calls it to merge the bump PR. This repo has no branch protection, so GitHub refuses auto-merge on a bump PR that is already clean; the script then merges it directly, and fails the job when the merge really fails.
+Copy [`templates/merge-bump-pr.sh`](templates/merge-bump-pr.sh) to `.github/scripts/merge-bump-pr.sh` too, executable: the last step calls it to merge the bump PR. It waits for the PR's checks before any merge (this repo's `marketplace` check included, though branch protection does not require it), fails the job when a check fails, is cancelled or does not finish in 15 minutes, and then merges the PR, directly when GitHub refuses auto-merge. A PR held by branch protection gets auto-merge instead. The waits can be tuned with `MERGE_BUMP_CHECKS_TIMEOUT`, `MERGE_BUMP_CHECKS_GRACE` and `MERGE_BUMP_CHECKS_INTERVAL`, in seconds.
 
 It assumes the standard fazer.ai layout:
 
