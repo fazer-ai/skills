@@ -633,17 +633,17 @@
       ]
     },
     {
-      "name": "fazer-ai-claude-code",
+      "name": "fazer-ai-code",
       "description": "Setup de Claude Code além do básico: cor da janela por estado da sessão, revisão pelo Codex, review loop em PR e uma rodada de backlog com gate de merge por script.",
       "descriptions": {
         "en": "Claude Code beyond the basics: window colour by session state, Codex review, a PR review loop and a backlog round with a script-decided merge gate.",
         "pt-BR": "Setup de Claude Code além do básico: cor da janela por estado da sessão, revisão pelo Codex, review loop em PR e uma rodada de backlog com gate de merge por script."
       },
-      "version": "0.3.0",
+      "version": "0.4.0",
       "source": {
         "source": "npm",
-        "package": "@fazer-ai-pro/fazer-ai-claude-code",
-        "version": "0.3.0",
+        "package": "@fazer-ai-pro/fazer-ai-code",
+        "version": "0.4.0",
         "registry": "https://npm.fazer.ai/"
       },
       "category": "development",
