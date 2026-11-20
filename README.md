@@ -15,7 +15,7 @@ fazer.ai subscription.
 | `fazer-ai-vps` | Skills to operate AI VPS infrastructure: debugging, migration, backup, alerts, deployment, hardening, and observability. |
 | `fazer-ai-agentes` | Skills to design, debug, and optimize AI agents: cost, model, prompt, simulation, and transcript debugging. |
 | `fazer-ai-skills-dev` | Skills for creating and maintaining Claude Code skills: security auditing and SKILL.md generation following the community standard. |
-| `fazer-ai-claude-code` | Claude Code beyond the basics: window colour by session state, Codex review, a PR review loop and a backlog round with a script-decided merge gate. |
+| `fazer-ai-code` | Claude Code beyond the basics: window colour by session state, Codex review, a PR review loop and a backlog round with a script-decided merge gate. |
 | `fazer-ai-fullstack` | Creates systems from the fazer.ai fullstack template in a private repository and brings in template updates by merge. |
 | `fazer-ai-navegador` | Gives Claude Code a Playwright-driven browser, headless or windowed, with logins kept only when you ask and safety rules for working with systems that have no API. |
 
